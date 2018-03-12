@@ -12,6 +12,18 @@
 		3F170E5E2057154C00B4CBA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F170E5C2057154C00B4CBA1 /* Main.storyboard */; };
 		3F170E602057154C00B4CBA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F170E5F2057154C00B4CBA1 /* Assets.xcassets */; };
 		3F170E632057154C00B4CBA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F170E612057154C00B4CBA1 /* LaunchScreen.storyboard */; };
+		3F170E6E2057161700B4CBA1 /* Battle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E6D2057161700B4CBA1 /* Battle.swift */; };
+		3F170E702057164B00B4CBA1 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E6F2057164B00B4CBA1 /* Board.swift */; };
+		3F170E722057165900B4CBA1 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E712057165900B4CBA1 /* Building.swift */; };
+		3F170E742057166200B4CBA1 /* Force.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E732057166200B4CBA1 /* Force.swift */; };
+		3F170E762057167300B4CBA1 /* Territory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E752057167300B4CBA1 /* Territory.swift */; };
+		3F170E782057168000B4CBA1 /* TerritoryNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E772057168000B4CBA1 /* TerritoryNames.swift */; };
+		3F170E7A205716A600B4CBA1 /* Bowmen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E79205716A600B4CBA1 /* Bowmen.swift */; };
+		3F170E7C205716AD00B4CBA1 /* Daimyo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E7B205716AD00B4CBA1 /* Daimyo.swift */; };
+		3F170E7E205716B600B4CBA1 /* Gunners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E7D205716B600B4CBA1 /* Gunners.swift */; };
+		3F170E80205716C000B4CBA1 /* Ronin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E7F205716C000B4CBA1 /* Ronin.swift */; };
+		3F170E82205716C700B4CBA1 /* Spearmen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E81205716C700B4CBA1 /* Spearmen.swift */; };
+		3F170E84205716CF00B4CBA1 /* Swordsmen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E83205716CF00B4CBA1 /* Swordsmen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +34,18 @@
 		3F170E5F2057154C00B4CBA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F170E622057154C00B4CBA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F170E642057154C00B4CBA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F170E6D2057161700B4CBA1 /* Battle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Battle.swift; sourceTree = "<group>"; };
+		3F170E6F2057164B00B4CBA1 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		3F170E712057165900B4CBA1 /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
+		3F170E732057166200B4CBA1 /* Force.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Force.swift; sourceTree = "<group>"; };
+		3F170E752057167300B4CBA1 /* Territory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Territory.swift; sourceTree = "<group>"; };
+		3F170E772057168000B4CBA1 /* TerritoryNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerritoryNames.swift; sourceTree = "<group>"; };
+		3F170E79205716A600B4CBA1 /* Bowmen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bowmen.swift; sourceTree = "<group>"; };
+		3F170E7B205716AD00B4CBA1 /* Daimyo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daimyo.swift; sourceTree = "<group>"; };
+		3F170E7D205716B600B4CBA1 /* Gunners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gunners.swift; sourceTree = "<group>"; };
+		3F170E7F205716C000B4CBA1 /* Ronin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ronin.swift; sourceTree = "<group>"; };
+		3F170E81205716C700B4CBA1 /* Spearmen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spearmen.swift; sourceTree = "<group>"; };
+		3F170E83205716CF00B4CBA1 /* Swordsmen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swordsmen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +78,34 @@
 		3F170E572057154C00B4CBA1 /* Shogun */ = {
 			isa = PBXGroup;
 			children = (
-				3F170E582057154C00B4CBA1 /* AppDelegate.swift */,
+				3F170E6C205715AC00B4CBA1 /* Units */,
+				3F170E6D2057161700B4CBA1 /* Battle.swift */,
+				3F170E6F2057164B00B4CBA1 /* Board.swift */,
+				3F170E712057165900B4CBA1 /* Building.swift */,
+				3F170E732057166200B4CBA1 /* Force.swift */,
+				3F170E752057167300B4CBA1 /* Territory.swift */,
+				3F170E772057168000B4CBA1 /* TerritoryNames.swift */,
+				3F170E5F2057154C00B4CBA1 /* Assets.xcassets */,
 				3F170E5A2057154C00B4CBA1 /* ViewController.swift */,
 				3F170E5C2057154C00B4CBA1 /* Main.storyboard */,
-				3F170E5F2057154C00B4CBA1 /* Assets.xcassets */,
+				3F170E582057154C00B4CBA1 /* AppDelegate.swift */,
 				3F170E612057154C00B4CBA1 /* LaunchScreen.storyboard */,
 				3F170E642057154C00B4CBA1 /* Info.plist */,
 			);
 			path = Shogun;
+			sourceTree = "<group>";
+		};
+		3F170E6C205715AC00B4CBA1 /* Units */ = {
+			isa = PBXGroup;
+			children = (
+				3F170E79205716A600B4CBA1 /* Bowmen.swift */,
+				3F170E7B205716AD00B4CBA1 /* Daimyo.swift */,
+				3F170E7D205716B600B4CBA1 /* Gunners.swift */,
+				3F170E7F205716C000B4CBA1 /* Ronin.swift */,
+				3F170E81205716C700B4CBA1 /* Spearmen.swift */,
+				3F170E83205716CF00B4CBA1 /* Swordsmen.swift */,
+			);
+			path = Units;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,8 +180,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F170E7C205716AD00B4CBA1 /* Daimyo.swift in Sources */,
 				3F170E5B2057154C00B4CBA1 /* ViewController.swift in Sources */,
 				3F170E592057154C00B4CBA1 /* AppDelegate.swift in Sources */,
+				3F170E7A205716A600B4CBA1 /* Bowmen.swift in Sources */,
+				3F170E7E205716B600B4CBA1 /* Gunners.swift in Sources */,
+				3F170E762057167300B4CBA1 /* Territory.swift in Sources */,
+				3F170E722057165900B4CBA1 /* Building.swift in Sources */,
+				3F170E82205716C700B4CBA1 /* Spearmen.swift in Sources */,
+				3F170E84205716CF00B4CBA1 /* Swordsmen.swift in Sources */,
+				3F170E702057164B00B4CBA1 /* Board.swift in Sources */,
+				3F170E80205716C000B4CBA1 /* Ronin.swift in Sources */,
+				3F170E6E2057161700B4CBA1 /* Battle.swift in Sources */,
+				3F170E742057166200B4CBA1 /* Force.swift in Sources */,
+				3F170E782057168000B4CBA1 /* TerritoryNames.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
