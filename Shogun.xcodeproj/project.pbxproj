@@ -17,7 +17,6 @@
 		3F170E722057165900B4CBA1 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E712057165900B4CBA1 /* Building.swift */; };
 		3F170E742057166200B4CBA1 /* Force.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E732057166200B4CBA1 /* Force.swift */; };
 		3F170E762057167300B4CBA1 /* Territory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E752057167300B4CBA1 /* Territory.swift */; };
-		3F170E782057168000B4CBA1 /* TerritoryNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E772057168000B4CBA1 /* TerritoryNames.swift */; };
 		3F170E7A205716A600B4CBA1 /* Bowmen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E79205716A600B4CBA1 /* Bowmen.swift */; };
 		3F170E7C205716AD00B4CBA1 /* Daimyo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E7B205716AD00B4CBA1 /* Daimyo.swift */; };
 		3F170E7E205716B600B4CBA1 /* Gunners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E7D205716B600B4CBA1 /* Gunners.swift */; };
@@ -39,7 +38,6 @@
 		3F170E712057165900B4CBA1 /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
 		3F170E732057166200B4CBA1 /* Force.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Force.swift; sourceTree = "<group>"; };
 		3F170E752057167300B4CBA1 /* Territory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Territory.swift; sourceTree = "<group>"; };
-		3F170E772057168000B4CBA1 /* TerritoryNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerritoryNames.swift; sourceTree = "<group>"; };
 		3F170E79205716A600B4CBA1 /* Bowmen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bowmen.swift; sourceTree = "<group>"; };
 		3F170E7B205716AD00B4CBA1 /* Daimyo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daimyo.swift; sourceTree = "<group>"; };
 		3F170E7D205716B600B4CBA1 /* Gunners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gunners.swift; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 				3F170E712057165900B4CBA1 /* Building.swift */,
 				3F170E732057166200B4CBA1 /* Force.swift */,
 				3F170E752057167300B4CBA1 /* Territory.swift */,
-				3F170E772057168000B4CBA1 /* TerritoryNames.swift */,
 				3F170E5F2057154C00B4CBA1 /* Assets.xcassets */,
 				3F170E5A2057154C00B4CBA1 /* ViewController.swift */,
 				3F170E5C2057154C00B4CBA1 /* Main.storyboard */,
@@ -193,7 +190,6 @@
 				3F170E80205716C000B4CBA1 /* Ronin.swift in Sources */,
 				3F170E6E2057161700B4CBA1 /* Battle.swift in Sources */,
 				3F170E742057166200B4CBA1 /* Force.swift in Sources */,
-				3F170E782057168000B4CBA1 /* TerritoryNames.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,11 +13,11 @@ class Daimyo
     var numPresent: Int
     var ranged: Bool
     
-    init (numbers: Int)
+    init ()
     {
         isSamurai = true
         combatValue = 6
-        numPresent = numbers
+        numPresent = 1
         ranged = false
     }
     
@@ -27,7 +27,7 @@ class Daimyo
     
     func getNumPresent() -> Int { return numPresent }
     
-    func setNumPresent(numbers: Int) { numPresent = numbers }
+    func killDaimyo() { numPresent = 0 }
     
     func getRanged() -> Bool { return ranged }
 }

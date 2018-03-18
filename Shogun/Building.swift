@@ -11,17 +11,29 @@ class Building
     var isCastle: Bool
     var spearmen: Spearmen
     var ronin: Ronin
+    var buildingExists: Bool
     
-    init()
+    init(iExist: Bool)
     {
+        buildingExists = iExist
         //impossible to build a fortress straight out, so we start with castle
         isCastle = true
         spearmen = Spearmen(numbers: 4)
         ronin = Ronin(numbers: 0)
     }
     
+    func getBuildingExistance() -> Bool
+    {
+        return buildingExists
+    }
+    
     func getBuildingType() -> String
     {
+        if !buildingExists
+        {
+            return "Looking for building type when building does not exist"
+        }
+        
         if(isCastle)
         {
             return "Castle"
@@ -34,6 +46,11 @@ class Building
     
     func getStrength() -> Int
     {
+        if !buildingExists
+        {
+            return -42
+        }
+        
         if(isCastle)
         {
             return spearmen.getNumPresent()
@@ -46,6 +63,11 @@ class Building
     
     func setStrength(strength: Int)
     {
+        if !buildingExists
+        {
+            return
+        }
+        
         if(isCastle)
         {
             spearmen.setNumPresent(numbers: strength)
@@ -58,6 +80,11 @@ class Building
     
     func reset()
     {
+        if !buildingExists
+        {
+            return
+        }
+        
         if(isCastle)
         {
             setStrength(strength: 4)
@@ -70,6 +97,11 @@ class Building
     
     func upgrade()
     {
+        if !buildingExists
+        {
+            return
+        }
+        
         //set spearmen strength to 0, upgrade, and then set ronin strength to 5
         setStrength(strength: 0)
         isCastle = false

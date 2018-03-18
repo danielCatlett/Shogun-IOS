@@ -15,7 +15,6 @@ class Force
     var spearmen: Spearmen
     var daimyo: Daimyo
     var building: Building
-    var buildingExists: Bool
     var isAttacker: Bool
     
     init(units: [Int], buildingStatus: Int, notDefender: Bool)
@@ -25,22 +24,20 @@ class Force
         swordsmen = Swordsmen(numbers: units[2])
         ronin = Ronin(numbers: units[3])
         spearmen = Spearmen(numbers: units[4])
-        daimyo = Daimyo(numbers: 1)
+        daimyo = Daimyo()
     
         if(buildingStatus == 0)
         {
-            building = Building()
-            buildingExists = true
+            building = Building(iExist: true)
         }
         else if(buildingStatus == 1)
         {
-            building = Building()
+            building = Building(iExist: true)
             building.upgrade()
-            buildingExists = true
         }
         else
         {
-            buildingExists = false
+            building = Building(iExist: false)
         }
     
         isAttacker = notDefender;
@@ -48,15 +45,15 @@ class Force
     
     func getStrength() -> String
     {
-        var returnValue = bowmen.getNumPresent() + " bowmen\n"
-        + gunners.getNumPresent() + " gunners\n"
-        + swordsmen.getNumPresent() + " swordsmen\n"
-        + ronin.getNumPresent() + " ronin\n"
-        + spearmen.getNumPresent() + " spearmen\n"
-        + daimyo.getNumPresent() + " daimyo\n";
-        if(buildingExists)
+        var returnValue = String(bowmen.getNumPresent()) + " bowmen\n"
+        returnValue += String(gunners.getNumPresent()) + " gunners\n"
+        returnValue += String(swordsmen.getNumPresent()) + " swordsmen\n"
+        returnValue += String(ronin.getNumPresent()) + " ronin\n"
+        returnValue += String(spearmen.getNumPresent()) + " spearmen\n"
+        returnValue += String(daimyo.getNumPresent()) + " daimyo\n"
+        if(building.getBuildingExistance())
         {
-            returnValue = returnValue.concat(getBuildingStrength())
+            returnValue += getBuildingStrength()
         }
     
         return returnValue;
@@ -64,13 +61,13 @@ class Force
     
     func getBuildingStrength() -> String
     {
-        if(building.getBuildingType().equals("Castle"))
+        if(building.getBuildingType() == "Castle")
         {
-            return "and " + building.getStrength() + " spearmen for your castle"
+            return "and " + String(building.getStrength()) + " spearmen for your castle"
         }
         else
         {
-            return "and " + building.getStrength() + " ronin for your fortress"
+            return "and " + String(building.getStrength()) + " ronin for your fortress"
         }
     }
     
@@ -79,8 +76,8 @@ class Force
         var numHits = 0
     
         //roll bowmen and gunners
-        numHits += unitAttack(bowmen.getCombatValue(), bowmen.getNumPresent())
-        numHits += unitAttack(gunners.getCombatValue(), gunners.getNumPresent())
+        numHits += unitAttack(attackValue: bowmen.getCombatValue(), strength: bowmen.getNumPresent())
+        numHits += unitAttack(attackValue: gunners.getCombatValue(), strength: gunners.getNumPresent())
     
         return numHits;
     }
@@ -90,10 +87,10 @@ class Force
         var numHits = 0
     
         //roll bowmen and gunners
-        numHits += unitAttack(swordsmen.getCombatValue(), swordsmen.getNumPresent())
-        numHits += unitAttack(ronin.getCombatValue(), ronin.getNumPresent())
-        numHits += unitAttack(spearmen.getCombatValue(), spearmen.getNumPresent())
-        numHits += unitAttack(daimyo.getCombatValue(), daimyo.getNumPresent())
+        numHits += unitAttack(attackValue: swordsmen.getCombatValue(), strength: swordsmen.getNumPresent())
+        numHits += unitAttack(attackValue: ronin.getCombatValue(), strength: ronin.getNumPresent())
+        numHits += unitAttack(attackValue: spearmen.getCombatValue(), strength: spearmen.getNumPresent())
+        numHits += unitAttack(attackValue: daimyo.getCombatValue(), strength: daimyo.getNumPresent())
     
         return numHits
     }
@@ -101,15 +98,15 @@ class Force
     func buildingAttack() -> Int
     {
         var numHits = 0
-        if(buildingExists)
+        if(building.getBuildingExistance())
         {
-            if(building.getBuildingType().equals("castle"))
+            if(building.getBuildingType() == "castle")
             {
-                numHits += unitAttack(spearmen.getCombatValue(), building.getStrength())
+                numHits += unitAttack(attackValue: spearmen.getCombatValue(), strength: building.getStrength())
             }
             else
             {
-                numHits += unitAttack(ronin.getCombatValue(), building.getStrength())
+                numHits += unitAttack(attackValue: ronin.getCombatValue(), strength: building.getStrength())
             }
         }
     
@@ -118,13 +115,14 @@ class Force
     
     func unitAttack(attackValue: Int, strength: Int) -> Int
     {
-        Random rngesus = new Random();
-        int numHits = 0;
-        for(int i = 0; i < strength; i++)
+        var numHits = 0
+        for _ in 0...strength
         {
-            int roll = rngesus.nextInt(attackValue) + 1; //num between 1 and attackValue, inclusive
+            let roll = arc4random_uniform(UInt32(attackValue)) + 1; //num between 1 and attackValue, inclusive
             if(roll <= attackValue)
-                numHits++;
+            {
+                numHits += 1
+            }
         }
     
         return numHits;
@@ -132,47 +130,51 @@ class Force
     
     func casulities(numDead: Int)
     {
-        if(buildingExists && building.getStrength() > 0)
+        //Apparently Swift doesn't like it when you change the
+        //var that was passed in (it makes it a constant), so this exists
+        //so that we can have a numDead that we can change
+        var numDeadMutable = numDead
+        if(building.getBuildingExistance() && building.getStrength() > 0)
         {
             var buildingStrength = building.getStrength()
-            if(buildingStrength > numDead)
+            if(buildingStrength > numDeadMutable)
             {
-                buildingStrength -= numDead
-                building.setStrength(buildingStrength)
+                buildingStrength -= numDeadMutable
+                building.setStrength(strength: buildingStrength)
                 return
             }
             else
             {
-                numDead -= buildingStrength
-                building.setStrength(0)
+                numDeadMutable -= buildingStrength
+                building.setStrength(strength: 0)
             }
         }
         else
         {
             //num still alive (minus daimyo, since he must die last)
-            var remainingStrength = troopsLeft() - 1
+            let remainingStrength = troopsLeft() - 1
     
-            if(remainingStrength > numDead)
+            if(remainingStrength > numDeadMutable)
             {
-                var numToKill = chooseDead(numDead)
-                adjustStrength(numToKill)
+                let numToKill = chooseDead(numDead: numDeadMutable)
+                adjustStrength(numToKill: numToKill)
             }
-            else if(remainingStrength <= numDead)
+            else if(remainingStrength <= numDeadMutable)
             {
                 //set all of them to 0
-                var numToKill = [Int]
+                var numToKill = [0]
     
-                numToKill.append(bowmen.getNumPresent())
+                numToKill[0] = (bowmen.getNumPresent())
                 numToKill.append(gunners.getNumPresent())
                 numToKill.append(swordsmen.getNumPresent())
                 numToKill.append(ronin.getNumPresent())
                 numToKill.append(spearmen.getNumPresent())
     
-                adjustStrength(numToKill)
+                adjustStrength(numToKill: numToKill)
             }
     
             //if everyone is going to be dead, kill the daimyo last
-            if(remainingStrength < numDead)
+            if(remainingStrength < numDeadMutable)
             {
                 daimyo.killDaimyo()
             }
@@ -182,19 +184,31 @@ class Force
     func adjustStrength(numToKill: [Int])
     {
         //set the strength to the current strength minus numToKill
-        bowmen.setNumPresent(bowmen.getNumPresent() - numToKill[0])
-        gunners.setNumPresent(gunners.getNumPresent() - numToKill[1])
-        swordsmen.setNumPresent(swordsmen.getNumPresent() - numToKill[2])
-        ronin.setNumPresent(ronin.getNumPresent() - numToKill[3])
-        spearmen.setNumPresent(spearmen.getNumPresent() - numToKill[4])
+        bowmen.setNumPresent(numbers: bowmen.getNumPresent() - numToKill[0])
+        gunners.setNumPresent(numbers: gunners.getNumPresent() - numToKill[1])
+        swordsmen.setNumPresent(numbers: swordsmen.getNumPresent() - numToKill[2])
+        ronin.setNumPresent(numbers: ronin.getNumPresent() - numToKill[3])
+        spearmen.setNumPresent(numbers: spearmen.getNumPresent() - numToKill[4])
     }
     
+    //this function is incomplete
+    //will need to take who to kill from the user
+    //instead of just putting 1 of each
     func chooseDead(numDead: Int) -> [Int]
     {
-        var choosenCasualities: [Int]
-        for index in 1...numDead
+        var choosenCasualities = [0]
+        var firstValSet = false
+        for _ in 1...numDead
         {
-            choosenCasualities.append(1);
+            if !firstValSet
+            {
+                choosenCasualities[0] = 1
+                firstValSet = true
+            }
+            else
+            {
+                choosenCasualities.append(1)
+            }
         }
         return choosenCasualities
     }
@@ -208,7 +222,7 @@ class Force
         + spearmen.getNumPresent()
         + daimyo.getNumPresent();
     
-        if(buildingExists)
+        if(building.getBuildingExistance())
         {
             remainingStrength += building.getStrength();
         }
