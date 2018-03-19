@@ -1,0 +1,342 @@
+{ "territories" : [
+    {
+        "name" : "Aki",
+        "adjacencies" : ["Bingo", "Iwami", "Suo"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Awaji",
+        "adjacencies" : ["Harima", "Izumi", "South Awa"],
+        "aquatic" : ["Harima", "Izumi", "South Awa"]
+    },
+    {
+        "name" : "Bingo",
+        "adjacencies" : ["Aki", "Bitchu", "Hoki", "Iwami", "Izumo"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Bitchu",
+        "adjacencies" : ["Bingo", "Bizen", "Hoki", "Mimasaka"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Bizen",
+        "adjacencies" : ["Bitchu", "Harima", "Mimasaka", "Sanuki"],
+        "aquatic" : ["Sanuki"]
+    },
+    {
+        "name" : "Bungo",
+        "adjacencies" : ["Buzen", "Chikugo", "Chikuzen", "Higo", "Hyuga", "Iyo", "Suo"],
+        "aquatic" : ["Iyo", "Suo"]
+    },
+    {
+        "name" : "Buzen",
+        "adjacencies" : ["Bungo", "Chikuzen", "Nagato"],
+        "aquatic" : ["Nagato"]
+    },
+    {
+        "name" : "Chikugo",
+        "adjacencies" : ["Bungo", "Chikuzen", "Higo", "Hizen"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Chikuzen",
+        "adjacencies" : ["Bungo", "Buzen", "Chikugo", "Hizen"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Dewa",
+        "adjacencies" : ["Echigo", "Mutsu", "Tsushima"],
+        "aquatic" : ["Tsushima"]
+    },
+    {
+        "name" : "Echigo",
+        "adjacencies" : ["Dewa", "Etchu", "Kozuke", "Mutsu", "Sado", "Shinano"],
+        "aquatic" : ["Sado"]
+    },
+    {
+        "name" : "Echizen",
+        "adjacencies" : ["Hida", "Kaga", "Mino", "Omi", "Wakasa"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Etchu",
+        "adjacencies" : ["Echigo", "Hida", "Kaga", "Noto", "Shinano"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Harima",
+        "adjacencies" : ["Awaji", "Bizen", "Inaba", "Mimasaka", "Settsu", "Tajima", "Tamba"],
+        "aquatic" : ["Awaji"]
+    },
+    {
+        "name" : "Hida",
+        "adjacencies" : ["Echizen", "Etchu", "Kaga", "Mino", "Shinano"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Higo",
+        "adjacencies" : ["Bungo", "Chikugo", "Hyuga", "Satsuma"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Hitachi",
+        "adjacencies" : ["Mutsu", "Shimosa", "Shimotsuke"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Hizen",
+        "adjacencies" : ["Chikugo", "Chikuzen", "Iki"],
+        "aquatic" : ["Iki"]
+    },
+    {
+        "name" : "Hoki",
+        "adjacencies" : ["Bingo", "Bitchu", "Inaba", "Izumo", "Mimasaka"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Hyuga",
+        "adjacencies" : ["Bungo", "Higo", "Kii", "Osumi", "Satsuma"],
+        "aquatic" : ["Kii"]
+    },
+    {
+        "name" : "Iga",
+        "adjacencies" : ["Ise", "Omi", "Yamashiro", "Yamato"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Iki",
+        "adjacencies" : ["Hizen", "Nagato", "Tsushima"],
+        "aquatic" : ["Hizen", "Nagato", "Tsushima"]
+    },
+    {
+        "name" : "Inaba",
+        "adjacencies" : ["Harima", "Hoki", "Mimasaka", "Tajima"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Ise",
+        "adjacencies" : ["Iga", "Kii", "Mino", "Omi", "Owari", "Shima", "Yamato"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Iwami",
+        "adjacencies" : ["Aki", "Bingo", "Izumo", "Nagato", "Suo"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Iyo",
+        "adjacencies" : ["Bungo", "Sanuki", "South Awa", "Tosa"],
+        "aquatic" : ["Bungo"]
+    },
+    {
+        "name" : "Izu",
+        "adjacencies" : ["North Awa", "Sagami", "Suruga"],
+        "aquatic" : ["North Awa"]
+    },
+    {
+        "name" : "Izumi",
+        "adjacencies" : ["Awaji", "Kawachi", "Kii"],
+        "aquatic" : ["Awaji"]
+    },
+    {
+        "name" : "Izumo",
+        "adjacencies" : ["Bingo", "Hoki", "Iwami", "Oki"],
+        "aquatic" : ["Oki"]
+    },
+    {
+        "name" : "Kaga",
+        "adjacencies" : ["Echizen", "Etchu", "Hida", "Noto"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Kai",
+        "adjacencies" : ["Musashi", "Sagami", "Shinano", "Suruga"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Kawachi",
+        "adjacencies" : ["Izumi", "Kii", "Settsu", "Tamba", "Yamashiro", "Yamato"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Kazusa",
+        "adjacencies" : ["North Awa", "Shimosa"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Kii",
+        "adjacencies" : ["Hyuga", "Ise", "Izumi", "Kawachi", "North Awa", "South Awa", "Yamato"], 
+        "aquatic" : ["Hyuga", "North Awa", "South Awa"]
+    },
+    {
+        "name" : "Kozuke",
+        "adjacencies" : ["Echigo", "Musashi", "Mutsu", "Shimotsuke", "Shinano"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Mikawa",
+        "adjacencies" : ["Mino", "Owari", "Shinano", "Totomi"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Mimasaka",
+        "adjacencies" : ["Bitchu", "Bizen", "Harima", "Hoki", "Inaba"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Mino",
+        "adjacencies" : ["Echizen", "Hida", "Ise", "Mikawa", "Omi", "Owari", "Shinano"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Musashi",
+        "adjacencies" : ["Kai", "Kozuke", "Sagami", "Shimosa", "Shinano"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Mutsu",
+        "adjacencies" : ["Dewa", "Echigo", "Hitachi", "Kozuke", "Shimotsuke"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Nagato",
+        "adjacencies" : ["Buzen", "Iki", "Iwami", "Suo"],
+        "aquatic" : ["Buzen", "Iki"]
+    },
+    {
+        "name" : "North Awa",
+        "adjacencies" : ["Izu", "Kazusa", "Kii"],
+        "aquatic" : ["Izu", "Kii"]
+    },
+    {
+        "name" : "Noto",
+        "adjacencies" : ["Etchu", "Kaga", "Oki", "Sado"],
+        "aquatic" : ["Sado", "Oki"]
+    },
+    {
+        "name" : "Oki",
+        "adjacencies" : ["Izumo", "Noto", "Tsushima"],
+        "aquatic" : ["Izumo", "Noto", "Tsushima"]
+    },
+    {
+        "name" : "Omi",
+        "adjacencies" : ["Echizen", "Iga", "Ise", "Mino", "Tamba", "Wakasa", "Yamashiro"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Osumi",
+        "adjacencies" : ["Hyuga", "Satsuma"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Owari",
+        "adjacencies" : ["Ise", "Mikawa", "Mino"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Sado",
+        "adjacencies" : ["Echigo", "Noto"],
+        "aquatic" : ["Echigo", "Noto"]
+    },
+    {
+        "name" : "Sagami",
+        "adjacencies" : ["Izu", "Kai", "Musashi", "Suruga"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Sanuki",
+        "adjacencies" : ["Bizen", "Iyo", "South Awa"],
+        "aquatic" : ["Bizen"]
+    },
+    {
+        "name" : "Satsuma",
+        "adjacencies" : ["Higo", "Hyuga", "Osumi"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Settsu",
+        "adjacencies" : ["Harima", "Kawachi", "Tamba"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Shima",
+        "adjacencies" : ["Ise"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Shimosa",
+        "adjacencies" : ["Hitachi", "Kazusa", "Musashi", "Shimotsuke"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Shimotsuke",
+        "adjacencies" : ["Hitachi", "Kozuke", "Mutsu", "Shimosa"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Shinano",
+        "adjacencies" : ["Echigo", "Etchu", "Hida", "Kai", "Kozuke", "Mikawa", "Musashi", "Mino", "Suruga", "Totomi"],
+        "aquatic" : []
+    },
+    {
+        "name" : "South Awa",
+        "adjacencies" : ["Awaji", "Iyo", "Kii", "Sanuki", "Tosa"],
+        "aquatic" : ["Awaji", "Kii"]
+    },
+    {
+        "name" : "Suo",
+        "adjacencies" : ["Aki", "Bungo", "Iwami", "Nagato"], 
+        "aquatic" : ["Bungo"]
+    },
+    {
+        "name" : "Suruga",
+        "adjacencies" : ["Izu", "Kai", "Sagami", "Shinano", "Totomi"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Tajima",
+        "adjacencies" : ["Harima", "Inaba", "Tamba", "Tango"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Tamba",
+        "adjacencies" : ["Harima", "Kawachi", "Omi", "Settsu", "Tajima", "Tango", "Wakasa", "Yamashiro"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Tango",
+        "adjacencies" : ["Tajima", "Tamba", "Wakasa"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Tosa",
+        "adjacencies" : ["Iyo", "South Awa"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Totomi",
+        "adjacencies" : ["Mikawa", "Shinano", "Suruga"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Tsushima",
+        "adjacencies" : ["Dewa", "Iki", "Oki"],
+        "aquatic" : ["Dewa", "Iki", "Oki"]
+    },
+    {
+        "name" : "Wakasa",
+        "adjacencies" : ["Echizen", "Omi", "Tamba", "Tango"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Yamashiro",
+        "adjacencies" : ["Iga", "Kawachi", "Omi", "Tamba", "Yamato"],
+        "aquatic" : []
+    },
+    {
+        "name" : "Yamato",
+        "adjacencies" : ["Iga", "Ise", "Kawachi", "Kii", "Yamashiro"],
+        "aquatic" : []
+    }
+]}

@@ -24,20 +24,30 @@ class Force
         swordsmen = Swordsmen(numbers: units[2])
         ronin = Ronin(numbers: units[3])
         spearmen = Spearmen(numbers: units[4])
-        daimyo = Daimyo()
-    
-        if(buildingStatus == 0)
+        if(units[5] == 1)
         {
-            building = Building(iExist: true)
-        }
-        else if(buildingStatus == 1)
-        {
-            building = Building(iExist: true)
-            building.upgrade()
+            daimyo = Daimyo(exists: true)
         }
         else
         {
+            daimyo = Daimyo(exists: false)
+        }
+    
+        if(buildingStatus == 0)
+        {
+            //no building
             building = Building(iExist: false)
+        }
+        else if(buildingStatus == 1)
+        {
+            //castle
+            building = Building(iExist: true)
+        }
+        else
+        {
+            //fortress
+            building = Building(iExist: true)
+            building.upgrade()
         }
     
         isAttacker = notDefender;
@@ -215,12 +225,7 @@ class Force
     
     func troopsLeft() -> Int
     {
-        var remainingStrength = bowmen.getNumPresent()
-        + gunners.getNumPresent()
-        + swordsmen.getNumPresent()
-        + ronin.getNumPresent()
-        + spearmen.getNumPresent()
-        + daimyo.getNumPresent();
+        var remainingStrength = bowmen.getNumPresent() + gunners.getNumPresent() + swordsmen.getNumPresent() + ronin.getNumPresent() + spearmen.getNumPresent() + daimyo.getNumPresent()
     
         if(building.getBuildingExistance())
         {

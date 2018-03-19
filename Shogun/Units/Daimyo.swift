@@ -13,11 +13,18 @@ class Daimyo
     var numPresent: Int
     var ranged: Bool
     
-    init ()
+    init (exists: Bool)
     {
         isSamurai = true
         combatValue = 6
-        numPresent = 1
+        if(exists)
+        {
+            numPresent = 1
+        }
+        else
+        {
+            numPresent = 0
+        }
         ranged = false
     }
     

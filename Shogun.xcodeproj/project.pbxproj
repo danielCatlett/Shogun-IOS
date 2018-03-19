@@ -23,6 +23,8 @@
 		3F170E80205716C000B4CBA1 /* Ronin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E7F205716C000B4CBA1 /* Ronin.swift */; };
 		3F170E82205716C700B4CBA1 /* Spearmen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E81205716C700B4CBA1 /* Spearmen.swift */; };
 		3F170E84205716CF00B4CBA1 /* Swordsmen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E83205716CF00B4CBA1 /* Swordsmen.swift */; };
+		3F25AA4E205E2502001F3318 /* classicboard.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F25AA4D205E2502001F3318 /* classicboard.json */; };
+		3F25AA54205F4F39001F3318 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25AA53205F4F39001F3318 /* Game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		3F170E7F205716C000B4CBA1 /* Ronin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ronin.swift; sourceTree = "<group>"; };
 		3F170E81205716C700B4CBA1 /* Spearmen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spearmen.swift; sourceTree = "<group>"; };
 		3F170E83205716CF00B4CBA1 /* Swordsmen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swordsmen.swift; sourceTree = "<group>"; };
+		3F25AA4D205E2502001F3318 /* classicboard.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = classicboard.json; sourceTree = "<group>"; };
+		3F25AA53205F4F39001F3318 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +81,13 @@
 			isa = PBXGroup;
 			children = (
 				3F170E6C205715AC00B4CBA1 /* Units */,
-				3F170E6D2057161700B4CBA1 /* Battle.swift */,
-				3F170E6F2057164B00B4CBA1 /* Board.swift */,
 				3F170E712057165900B4CBA1 /* Building.swift */,
 				3F170E732057166200B4CBA1 /* Force.swift */,
+				3F170E6D2057161700B4CBA1 /* Battle.swift */,
 				3F170E752057167300B4CBA1 /* Territory.swift */,
+				3F170E6F2057164B00B4CBA1 /* Board.swift */,
+				3F25AA53205F4F39001F3318 /* Game.swift */,
+				3F25AA4D205E2502001F3318 /* classicboard.json */,
 				3F170E5F2057154C00B4CBA1 /* Assets.xcassets */,
 				3F170E5A2057154C00B4CBA1 /* ViewController.swift */,
 				3F170E5C2057154C00B4CBA1 /* Main.storyboard */,
@@ -167,6 +173,7 @@
 				3F170E632057154C00B4CBA1 /* LaunchScreen.storyboard in Resources */,
 				3F170E602057154C00B4CBA1 /* Assets.xcassets in Resources */,
 				3F170E5E2057154C00B4CBA1 /* Main.storyboard in Resources */,
+				3F25AA4E205E2502001F3318 /* classicboard.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +193,7 @@
 				3F170E722057165900B4CBA1 /* Building.swift in Sources */,
 				3F170E82205716C700B4CBA1 /* Spearmen.swift in Sources */,
 				3F170E84205716CF00B4CBA1 /* Swordsmen.swift in Sources */,
+				3F25AA54205F4F39001F3318 /* Game.swift in Sources */,
 				3F170E702057164B00B4CBA1 /* Board.swift in Sources */,
 				3F170E80205716C000B4CBA1 /* Ronin.swift in Sources */,
 				3F170E6E2057161700B4CBA1 /* Battle.swift in Sources */,
