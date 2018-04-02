@@ -25,6 +25,8 @@
 		3F170E84205716CF00B4CBA1 /* Swordsmen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E83205716CF00B4CBA1 /* Swordsmen.swift */; };
 		3F25AA4E205E2502001F3318 /* classicboard.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F25AA4D205E2502001F3318 /* classicboard.json */; };
 		3F25AA54205F4F39001F3318 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25AA53205F4F39001F3318 /* Game.swift */; };
+		3F70E9102072AA39003EB88E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70E90F2072AA39003EB88E /* Player.swift */; };
+		3F70E9122072B306003EB88E /* TurnManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70E9112072B306003EB88E /* TurnManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		3F170E83205716CF00B4CBA1 /* Swordsmen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swordsmen.swift; sourceTree = "<group>"; };
 		3F25AA4D205E2502001F3318 /* classicboard.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = classicboard.json; sourceTree = "<group>"; };
 		3F25AA53205F4F39001F3318 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		3F70E90F2072AA39003EB88E /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		3F70E9112072B306003EB88E /* TurnManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,8 @@
 				3F170E6D2057161700B4CBA1 /* Battle.swift */,
 				3F170E752057167300B4CBA1 /* Territory.swift */,
 				3F170E6F2057164B00B4CBA1 /* Board.swift */,
+				3F70E90F2072AA39003EB88E /* Player.swift */,
+				3F70E9112072B306003EB88E /* TurnManager.swift */,
 				3F25AA53205F4F39001F3318 /* Game.swift */,
 				3F25AA4D205E2502001F3318 /* classicboard.json */,
 				3F170E5F2057154C00B4CBA1 /* Assets.xcassets */,
@@ -184,6 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F70E9122072B306003EB88E /* TurnManager.swift in Sources */,
 				3F170E7C205716AD00B4CBA1 /* Daimyo.swift in Sources */,
 				3F170E5B2057154C00B4CBA1 /* ViewController.swift in Sources */,
 				3F170E592057154C00B4CBA1 /* AppDelegate.swift in Sources */,
@@ -197,6 +204,7 @@
 				3F170E702057164B00B4CBA1 /* Board.swift in Sources */,
 				3F170E80205716C000B4CBA1 /* Ronin.swift in Sources */,
 				3F170E6E2057161700B4CBA1 /* Battle.swift in Sources */,
+				3F70E9102072AA39003EB88E /* Player.swift in Sources */,
 				3F170E742057166200B4CBA1 /* Force.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

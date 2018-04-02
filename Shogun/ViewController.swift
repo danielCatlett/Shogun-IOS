@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        _ = Board()
+        _ = Game(numberOfPlayers: 5)
     }
 
     override func didReceiveMemoryWarning()

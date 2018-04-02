@@ -50,6 +50,15 @@ class Board
         }
     }
     
+    func getTerritoryDictionary() -> [String: Territory]
+    {
+        return territories
+    }
+    
+    func setTerritoryDictionary(updatedTerrDict: [String: Territory])
+    {
+        territories = updatedTerrDict
+    }
 }
 
 //our structures used for json decoding
