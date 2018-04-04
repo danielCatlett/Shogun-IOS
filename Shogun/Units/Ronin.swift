@@ -27,7 +27,7 @@ class Ronin
     
     func getNumPresent() -> Int { return numPresent }
     
-    func setNumPresent(numbers: Int) { numPresent = numbers }
+    func adjustNumPresent(numbers: Int) { numPresent = numbers }
     
     func getRanged() -> Bool { return ranged }
 }

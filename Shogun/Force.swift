@@ -53,6 +53,25 @@ class Force
         isAttacker = notDefender;
     }
     
+    func adjustUnits(unitType: String, num: Int)
+    {
+        switch unitType
+        {
+            case "bowmen":
+                bowmen.adjustNumPresent(numbers: num)
+            case "swordsmen":
+                swordsmen.adjustNumPresent(numbers: num)
+            case "gunners":
+                gunners.adjustNumPresent(numbers: num)
+            case "ronin":
+                ronin.adjustNumPresent(numbers: num)
+            case "spearmen":
+                spearmen.adjustNumPresent(numbers: num)
+            default:
+                print("We are trying to add a unit type that doesn't exist")
+        }
+    }
+    
     func getStrength() -> String
     {
         var returnValue = String(bowmen.getNumPresent()) + " bowmen\n"
@@ -193,12 +212,13 @@ class Force
     
     func adjustStrength(numToKill: [Int])
     {
-        //set the strength to the current strength minus numToKill
-        bowmen.setNumPresent(numbers: bowmen.getNumPresent() - numToKill[0])
-        gunners.setNumPresent(numbers: gunners.getNumPresent() - numToKill[1])
-        swordsmen.setNumPresent(numbers: swordsmen.getNumPresent() - numToKill[2])
-        ronin.setNumPresent(numbers: ronin.getNumPresent() - numToKill[3])
-        spearmen.setNumPresent(numbers: spearmen.getNumPresent() - numToKill[4])
+        //Kill the number of units we've been told to
+        //Multiply by -1 because we would add units otherwise
+        bowmen.adjustNumPresent(numbers: -1 * numToKill[0])
+        gunners.adjustNumPresent(numbers: -1 * numToKill[1])
+        swordsmen.adjustNumPresent(numbers: -1 * numToKill[2])
+        ronin.adjustNumPresent(numbers: -1 * numToKill[3])
+        spearmen.adjustNumPresent(numbers: -1 * numToKill[4])
     }
     
     //this function is incomplete

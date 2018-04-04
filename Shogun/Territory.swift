@@ -15,13 +15,14 @@ class Territory
     var defenders: Force
     var owner: Int
     
-    init(terrName: String, adjacents: [String], amphibs: [String], unitsHere: Force)
+    init(terrName: String, adjacents: [String], amphibs: [String])
     {
         name = terrName
         adjacencies = adjacents
         amphibiousRoutes = amphibs
         
-        defenders = unitsHere
+        //territory starts out deserted
+        defenders = Force(units: [0, 0, 0, 0, 0, 0], buildingStatus: 0, notDefender: false)
         //-1 means it is deserted
         owner = -1
     }
