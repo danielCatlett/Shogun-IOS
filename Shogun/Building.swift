@@ -70,11 +70,11 @@ class Building
         
         if(isCastle)
         {
-            spearmen.setNumPresent(numbers: strength)
+            spearmen.adjustNumPresent(numbers: strength)
         }
         else
         {
-            ronin.setNumPresent(numbers: strength)
+            ronin.adjustNumPresent(numbers: strength)
         }
     }
     

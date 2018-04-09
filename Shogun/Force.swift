@@ -88,6 +88,36 @@ class Force
         return returnValue;
     }
     
+    func getBowmen() -> Bowmen
+    {
+        return bowmen
+    }
+    
+    func getGunners() -> Gunners
+    {
+        return gunners
+    }
+    
+    func getSwordsmen() -> Spearmen
+    {
+        return spearmen
+    }
+    
+    func getRonin() -> Ronin
+    {
+        return ronin
+    }
+    
+    func getSpearmen() -> Spearmen
+    {
+        return spearmen
+    }
+    
+    func getDaimyo() -> Daimyo
+    {
+        return daimyo
+    }
+    
     func getBuildingStrength() -> String
     {
         if(building.getBuildingType() == "Castle")
@@ -186,7 +216,7 @@ class Force
             if(remainingStrength > numDeadMutable)
             {
                 let numToKill = chooseDead(numDead: numDeadMutable)
-                adjustStrength(numToKill: numToKill)
+                killUnits(numToKill: numToKill)
             }
             else if(remainingStrength <= numDeadMutable)
             {
@@ -199,7 +229,7 @@ class Force
                 numToKill.append(ronin.getNumPresent())
                 numToKill.append(spearmen.getNumPresent())
     
-                adjustStrength(numToKill: numToKill)
+                killUnits(numToKill: numToKill)
             }
     
             //if everyone is going to be dead, kill the daimyo last
@@ -210,15 +240,14 @@ class Force
         }
     }
     
-    func adjustStrength(numToKill: [Int])
+    func killUnits(numToKill: [Int])
     {
         //Kill the number of units we've been told to
-        //Multiply by -1 because we would add units otherwise
-        bowmen.adjustNumPresent(numbers: -1 * numToKill[0])
-        gunners.adjustNumPresent(numbers: -1 * numToKill[1])
-        swordsmen.adjustNumPresent(numbers: -1 * numToKill[2])
-        ronin.adjustNumPresent(numbers: -1 * numToKill[3])
-        spearmen.adjustNumPresent(numbers: -1 * numToKill[4])
+        bowmen.adjustNumPresent(numbers: numToKill[0])
+        gunners.adjustNumPresent(numbers: numToKill[1])
+        swordsmen.adjustNumPresent(numbers: numToKill[2])
+        ronin.adjustNumPresent(numbers: numToKill[3])
+        spearmen.adjustNumPresent(numbers: numToKill[4])
     }
     
     //this function is incomplete

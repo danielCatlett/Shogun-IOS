@@ -34,12 +34,8 @@ class Board
                 let adjacencies = territoryJSON.adjacencies
                 let aquatics = territoryJSON.aquatic
                 
-                //set up an empty force for the territory
-                let units = [0, 0, 0, 0, 0, 0]
-                let emptyForce = Force(units: units, buildingStatus: 0, notDefender: false)
-                
                 //put that all together to create a Territory object, then add it to the Territory dictionary
-                let currentTerritory = Territory(terrName: name, adjacents: adjacencies, amphibs: aquatics, unitsHere: emptyForce)
+                let currentTerritory = Territory(terrName: name, adjacents: adjacencies, amphibs: aquatics)
                 territories[name] = currentTerritory
             }
         }
@@ -58,6 +54,11 @@ class Board
     func setTerritoryDictionary(updatedTerrDict: [String: Territory])
     {
         territories = updatedTerrDict
+    }
+    
+    func getTerritory(territoryName: String) -> Territory
+    {
+        return territories[territoryName]!
     }
 }
 

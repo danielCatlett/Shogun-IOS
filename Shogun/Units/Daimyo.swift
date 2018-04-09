@@ -36,5 +36,7 @@ class Daimyo
     
     func killDaimyo() { numPresent = 0 }
     
+    func newDaimyo() { numPresent = 1 }
+    
     func getRanged() -> Bool { return ranged }
 }

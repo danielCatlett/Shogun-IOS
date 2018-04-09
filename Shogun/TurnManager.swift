@@ -6,8 +6,7 @@
 
 import Foundation
 
-/*
-                        ***DRAFT***
+/*                        ***DRAFT***
     ***THIS IS SUBJECT TO CHANGE AS DEVELOPMENT CONTINUES***
  Turn manager is for handling the users interaction with the board.
  It does not control the flow of the game, or decide to start a new turn,
@@ -106,9 +105,26 @@ class TurnManager
         return players
     }
     
-    func turnZero()
+    func initialReinforcements(territoryChoices: [String])
     {
+        var choosenTerritory = board.getTerritory(territoryName: getChoice(territoryChoices: territoryChoices, index: 0))
+//        print("Player picks what territory they will want to initially reinforce here")
+//        print("For now, we just use their first possible option")
+        var index = 1
+        while(choosenTerritory.getDefenders().getSpearmen().getNumPresent() == 3)
+        {
+            //this is just a stand in for how initial unit reinforcement works with player interaction
+            choosenTerritory = board.getTerritory(territoryName: getChoice(territoryChoices: territoryChoices, index: index))
+            index += 1
+        }
         
+        choosenTerritory.getDefenders().getSpearmen().adjustNumPresent(numbers: 2)
+        print("Add two spearmen to " + choosenTerritory.getName())
+    }
+    
+    func getChoice(territoryChoices: [String], index: Int) -> String
+    {
+        return territoryChoices[index]
     }
     
     func drawSwords(numPlayers: Int) -> [Int]
