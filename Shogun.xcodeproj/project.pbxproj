@@ -27,6 +27,7 @@
 		3F25AA54205F4F39001F3318 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25AA53205F4F39001F3318 /* Game.swift */; };
 		3F70E9102072AA39003EB88E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70E90F2072AA39003EB88E /* Player.swift */; };
 		3F70E9122072B306003EB88E /* TurnManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70E9112072B306003EB88E /* TurnManager.swift */; };
+		3F7CDF96207BE9E80026FA51 /* Army.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CDF95207BE9E80026FA51 /* Army.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		3F25AA53205F4F39001F3318 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		3F70E90F2072AA39003EB88E /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		3F70E9112072B306003EB88E /* TurnManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnManager.swift; sourceTree = "<group>"; };
+		3F7CDF95207BE9E80026FA51 /* Army.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Army.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,12 +88,13 @@
 			children = (
 				3F170E6C205715AC00B4CBA1 /* Units */,
 				3F170E712057165900B4CBA1 /* Building.swift */,
+				3F7CDF95207BE9E80026FA51 /* Army.swift */,
 				3F170E732057166200B4CBA1 /* Force.swift */,
 				3F170E6D2057161700B4CBA1 /* Battle.swift */,
 				3F170E752057167300B4CBA1 /* Territory.swift */,
 				3F170E6F2057164B00B4CBA1 /* Board.swift */,
-				3F70E90F2072AA39003EB88E /* Player.swift */,
 				3F70E9112072B306003EB88E /* TurnManager.swift */,
+				3F70E90F2072AA39003EB88E /* Player.swift */,
 				3F25AA53205F4F39001F3318 /* Game.swift */,
 				3F25AA4D205E2502001F3318 /* classicboard.json */,
 				3F170E5A2057154C00B4CBA1 /* ViewController.swift */,
@@ -198,6 +201,7 @@
 				3F170E7E205716B600B4CBA1 /* Gunners.swift in Sources */,
 				3F170E762057167300B4CBA1 /* Territory.swift in Sources */,
 				3F170E722057165900B4CBA1 /* Building.swift in Sources */,
+				3F7CDF96207BE9E80026FA51 /* Army.swift in Sources */,
 				3F170E82205716C700B4CBA1 /* Spearmen.swift in Sources */,
 				3F170E84205716CF00B4CBA1 /* Swordsmen.swift in Sources */,
 				3F25AA54205F4F39001F3318 /* Game.swift in Sources */,

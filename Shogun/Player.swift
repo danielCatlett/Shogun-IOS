@@ -11,7 +11,6 @@ class Player
     private var koku: Int
     private var territories: [String]
     
-    
     private var daimyoOnBoard: Int
     
     //sll of these vars are the number of each unit the player has left to deploy
@@ -25,6 +24,7 @@ class Player
     private var ninja: Bool
     private var sword: Int
     
+    private var allocatedKoku: [Int]
     
     init(numKoku: Int, territoryList: [String], swordNum: Int)
     {
@@ -39,11 +39,38 @@ class Player
         spearmen = 36
         
         ninja = false
+        
+        allocatedKoku = [0, 0, 0, 0, 0]
     }
     
     func getKoku() -> Int
     {
         return koku
+    }
+    
+    func setAllocation(allocationArray: [Int])
+    {
+        allocatedKoku = allocationArray
+    }
+    
+    func getKokuInSlot(slotName: String) -> Int
+    {
+        switch slotName
+        {
+            case "swords":
+                return allocatedKoku[0]
+            case "build":
+                return allocatedKoku[1]
+            case "units":
+                return allocatedKoku[2]
+            case "ronin":
+                return allocatedKoku[3]
+            case "ninja":
+                return allocatedKoku[4]
+            default:
+                print("We are trying to check for a slot that doesn't exist")
+                return -1
+        }
     }
     
     //Either add or subtract koku, for when it is spent or

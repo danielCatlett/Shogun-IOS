@@ -52,7 +52,83 @@ class Game
                 currentPlayer.adjustSpearmen(numChanged: -2)
             }
         }
-        print("exited loop")
+        
+        //each player places 3 armies
+        for _ in 1...3
+        {
+            //loop through each player
+            for index in 0 ..< numPlayers
+            {
+                let currentPlayer = players[playerOrder[index]]
+                let possibleTerritories = currentPlayer.getTerritories()
+                turnManager.placeArmies(territoryChoices: possibleTerritories)
+                currentPlayer.adjustBowmen(numChanged: -1)
+                currentPlayer.adjustSwordsmen(numChanged: -1)
+                currentPlayer.adjustGunners(numChanged: -2)
+            }
+        }
+        
+        //start normal turn loop
+//        while(checkForWinner() == false)
+//        {
+            plan()
+//        }
+    }
+    
+    func plan()
+    {
+        //each player takes turns planning
+        for index in 0 ..< numPlayers
+        {
+            print("You have " + String(players[index].getKoku()) + " koku to spend.")
+            let allocatedKoku = allocateKoku(numKoku: players[index].getKoku())
+            players[index].setAllocation(allocationArray: allocatedKoku)
+        }
+        print("Players have planned how they will spend their koku")
+    }
+    
+    func takeSwords()
+    {
+        //put all of the players sword bids in one place, so that we can let them choose
+        var swordBids = [Int]()
+        for index in 0 ..< numPlayers
+        {
+            swordBids.append(players[index].getKokuInSlot(slotName: "swords"))
+        }
+    }
+    
+    //don't feel like doing this now, so it just returns an empty value
+    func checkSwordBids(swordBids: [Int]) -> [Int]
+    {
+        var rv = [Int]()
+        
+        let maxBid = swordBids.max()
+        if(maxBid == 0)
+        {
+            return rv
+        }
+        else
+        {
+            return rv
+        }
+    }
+    
+    func build()
+    {
+        //check if each player has spent money on build, then let them build
+        for index in 0 ..< numPlayers
+        {
+            if(players[index].getKokuInSlot(slotName: "build") != 0)
+            {
+                
+            }
+        }
+    }
+    
+    //stand in for when the user will actually decide how to spend their koku
+    func allocateKoku(numKoku: Int) -> [Int]
+    {
+        return [0, 0, numKoku, 0, 0]
     }
     
     //check the order of the swords that were drawn, so that we know who goes when
@@ -83,6 +159,19 @@ class Game
             rv.append(currentMinIndex)
         }
         return rv
+    }
+    
+    //check to see if any player has 35 territories
+    func checkForWinner() -> Bool
+    {
+        for index in 0 ..< numPlayers
+        {
+            if(players[index].getTerritories().count >= 35)
+            {
+                return true
+            }
+        }
+        return false
     }
     
     func getCastlesLeft() -> Int

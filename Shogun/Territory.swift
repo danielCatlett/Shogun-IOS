@@ -13,6 +13,7 @@ class Territory
     var amphibiousRoutes: [String]
     
     var defenders: Force
+    var army: Army
     var owner: Int
     
     init(terrName: String, adjacents: [String], amphibs: [String])
@@ -22,7 +23,8 @@ class Territory
         amphibiousRoutes = amphibs
         
         //territory starts out deserted
-        defenders = Force(units: [0, 0, 0, 0, 0, 0], buildingStatus: 0, notDefender: false)
+        defenders = Force(units: [0, 0, 0, 0, 0], buildingStatus: 0, notDefender: false)
+        army = Army()
         //-1 means it is deserted
         owner = -1
     }
@@ -55,6 +57,11 @@ class Territory
     func getDefenders() -> Force
     {
         return defenders
+    }
+    
+    func getArmy() -> Army
+    {
+        return army
     }
     
     func setDefenders(newDefenders: Force)

@@ -108,18 +108,47 @@ class TurnManager
     func initialReinforcements(territoryChoices: [String])
     {
         var choosenTerritory = board.getTerritory(territoryName: getChoice(territoryChoices: territoryChoices, index: 0))
-//        print("Player picks what territory they will want to initially reinforce here")
-//        print("For now, we just use their first possible option")
+        print("Player picks what territory they will want to initially reinforce here")
+        print("For now, we just use their first possible option")
         var index = 1
         while(choosenTerritory.getDefenders().getSpearmen().getNumPresent() == 3)
         {
-            //this is just a stand in for how initial unit reinforcement works with player interaction
+            //this is just a stand in for how initial unit reinforcement will work until player interaction
             choosenTerritory = board.getTerritory(territoryName: getChoice(territoryChoices: territoryChoices, index: index))
             index += 1
         }
         
         choosenTerritory.getDefenders().getSpearmen().adjustNumPresent(numbers: 2)
         print("Add two spearmen to " + choosenTerritory.getName())
+    }
+    
+    func placeArmies(territoryChoices: [String])
+    {
+        var choosenTerritory = board.getTerritory(territoryName: getChoice(territoryChoices: territoryChoices, index: 0))
+        print("Player picks what territory they will place there army")
+        print("For now, we just use their first possible option")
+        var index = 1
+        while(choosenTerritory.getArmy().getDaimyo().getNumPresent() == 1)
+        {
+            //this is just a stand in for how initial army will work until player interaction
+            choosenTerritory = board.getTerritory(territoryName: getChoice(territoryChoices: territoryChoices, index: index))
+            index += 1
+        }
+        
+        choosenTerritory.getArmy().armyCreated()
+        print("Added an army to " + choosenTerritory.getName())
+    }
+    
+    func placeBuildings(territoryChoices: [String])
+    {
+        for index in 0...territoryChoices.count
+        {
+            //basically, if the building doesn't exist
+            if(!board.getTerritory(territoryName: territoryChoices[index]).getDefenders().getBuilding().getBuildingExistance())
+            {
+                //place building
+            }
+        }
     }
     
     func getChoice(territoryChoices: [String], index: Int) -> String

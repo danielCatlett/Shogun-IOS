@@ -13,7 +13,6 @@ class Force
     var swordsmen: Swordsmen
     var ronin: Ronin
     var spearmen: Spearmen
-    var daimyo: Daimyo
     var building: Building
     var isAttacker: Bool
     
@@ -24,14 +23,6 @@ class Force
         swordsmen = Swordsmen(numbers: units[2])
         ronin = Ronin(numbers: units[3])
         spearmen = Spearmen(numbers: units[4])
-        if(units[5] == 1)
-        {
-            daimyo = Daimyo(exists: true)
-        }
-        else
-        {
-            daimyo = Daimyo(exists: false)
-        }
     
         if(buildingStatus == 0)
         {
@@ -50,7 +41,9 @@ class Force
             building.upgrade()
         }
     
-        isAttacker = notDefender;
+        isAttacker = notDefender
+        
+        
     }
     
     func adjustUnits(unitType: String, num: Int)
@@ -79,7 +72,6 @@ class Force
         returnValue += String(swordsmen.getNumPresent()) + " swordsmen\n"
         returnValue += String(ronin.getNumPresent()) + " ronin\n"
         returnValue += String(spearmen.getNumPresent()) + " spearmen\n"
-        returnValue += String(daimyo.getNumPresent()) + " daimyo\n"
         if(building.getBuildingExistance())
         {
             returnValue += getBuildingStrength()
@@ -113,11 +105,6 @@ class Force
         return spearmen
     }
     
-    func getDaimyo() -> Daimyo
-    {
-        return daimyo
-    }
-    
     func getBuildingStrength() -> String
     {
         if(building.getBuildingType() == "Castle")
@@ -128,6 +115,11 @@ class Force
         {
             return "and " + String(building.getStrength()) + " ronin for your fortress"
         }
+    }
+    
+    func getBuilding() -> Building
+    {
+        return building
     }
     
     func rangedAttacks() -> Int
@@ -149,7 +141,6 @@ class Force
         numHits += unitAttack(attackValue: swordsmen.getCombatValue(), strength: swordsmen.getNumPresent())
         numHits += unitAttack(attackValue: ronin.getCombatValue(), strength: ronin.getNumPresent())
         numHits += unitAttack(attackValue: spearmen.getCombatValue(), strength: spearmen.getNumPresent())
-        numHits += unitAttack(attackValue: daimyo.getCombatValue(), strength: daimyo.getNumPresent())
     
         return numHits
     }
@@ -210,8 +201,8 @@ class Force
         }
         else
         {
-            //num still alive (minus daimyo, since he must die last)
-            let remainingStrength = troopsLeft() - 1
+            //num still alive
+            let remainingStrength = troopsLeft()
     
             if(remainingStrength > numDeadMutable)
             {
@@ -230,12 +221,6 @@ class Force
                 numToKill.append(spearmen.getNumPresent())
     
                 killUnits(numToKill: numToKill)
-            }
-    
-            //if everyone is going to be dead, kill the daimyo last
-            if(remainingStrength < numDeadMutable)
-            {
-                daimyo.killDaimyo()
             }
         }
     }
@@ -274,13 +259,13 @@ class Force
     
     func troopsLeft() -> Int
     {
-        var remainingStrength = bowmen.getNumPresent() + gunners.getNumPresent() + swordsmen.getNumPresent() + ronin.getNumPresent() + spearmen.getNumPresent() + daimyo.getNumPresent()
+        var remainingStrength = bowmen.getNumPresent() + gunners.getNumPresent() + swordsmen.getNumPresent() + ronin.getNumPresent() + spearmen.getNumPresent()
     
         if(building.getBuildingExistance())
         {
-            remainingStrength += building.getStrength();
+            remainingStrength += building.getStrength()
         }
     
-        return remainingStrength;
+        return remainingStrength
     }
 }
