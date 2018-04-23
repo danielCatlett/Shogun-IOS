@@ -95,6 +95,11 @@ class Building
         }
     }
     
+    func buildCastle()
+    {
+        buildingExists = true
+    }
+    
     func upgrade()
     {
         if !buildingExists
