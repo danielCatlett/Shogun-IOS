@@ -153,6 +153,7 @@ class Game
             takeSwords()
             build()
             levyUnits()
+            hireRonin()
         }
     }
     
@@ -428,6 +429,81 @@ class Game
         return territoryOptionsMutable
     }
     
+    func hireRonin()
+    {
+        //this is done in sword order, just in case there isn't enough ronin
+        for i in 0 ..< numPlayers
+        {
+            for j in 0 ..< numPlayers
+            {
+                if(players[j].getSword() == i)
+                {
+                    var roninHired = players[j].getKokuInSlot(slotName: "ronin") * 2 //you get two ronin per koku
+                    
+                    //the player can't hire more ronin than there are ronin left
+                    if(getRoninLeft() - roninHired < 0)
+                    {
+                        roninHired = getRoninLeft()
+                    }
+                    
+                    adjustRoninLeft(numChanged: -1 * roninHired)
+                    
+                    while(roninHired > 0)
+                    {
+                        let territory = selectTerritoryForRonin(territoryChoices: players[j].getTerritories())
+                        let legalLimit = board.getTerritory(territoryName: territory).getDefenders().nonRoninNumbers()
+                        let numRoninToDeploy = roninToDeploy(roninLeftToDeploy: roninHired, legalLimit: legalLimit)
+                        
+                        board.getTerritory(territoryName: territory).getDefenders().adjustUnits(unitType: "ronin", num: numRoninToDeploy)
+                        //TODO: PUT IN SOMETHING THAT BREAKS IF THERE IS NO LEGAL PLACE TO PUT RONIN LEFT
+                    }
+                }
+            }
+        }
+    }
+    
+    //TODO: MAKE NOT A PLACEHOLDER
+    //this function is different from the select territory for units in that
+    //it won't give the option for deploying ronin to territories where
+    //there aren't enough units for it to be legal
+    func selectTerritoryForRonin(territoryChoices: [String]) -> String
+    {
+        return territoryChoices[0]
+    }
+    
+    //TODO: MAKE NOT A PLACEHOLDER
+    func roninToDeploy(roninLeftToDeploy: Int, legalLimit: Int) -> Int
+    {
+        return min(roninLeftToDeploy, legalLimit)
+    }
+    
+    func hireNinja()
+    {
+        var maxBid = 0
+        var maxBidIndex = 0
+        var tieForFirst = false
+        for i in 0 ..< numPlayers
+        {
+            let playerBid = players[i].getKokuInSlot(slotName: "ninja")
+            if(playerBid > maxBid)
+            {
+                maxBid = playerBid
+                maxBidIndex = i
+                tieForFirst = false
+            }
+            else if(playerBid == maxBid)
+            {
+                tieForFirst = true
+            }
+        }
+        
+        if(!tieForFirst)
+        {
+            players[maxBidIndex].ninjaHired()
+        }
+    }
+    
+    //TODO: MAKE NOT A PLACEHOLDER
     //stand in for when the user will actually decide how to spend their koku
     func allocateKoku(numKoku: Int) -> [Int]
     {

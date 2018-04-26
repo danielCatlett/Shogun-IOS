@@ -80,6 +80,16 @@ class Force
         return returnValue;
     }
     
+    func nonRoninNumbers() -> Int
+    {
+        var rv = bowmen.getNumPresent()
+        rv += gunners.getNumPresent()
+        rv += swordsmen.getNumPresent()
+        rv += spearmen.getNumPresent()
+        
+        return rv
+    }
+    
     func getBowmen() -> Bowmen
     {
         return bowmen
