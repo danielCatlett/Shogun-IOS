@@ -9,22 +9,19 @@ import Foundation
 class Territory
 {
     var name: String
-    var adjacencies: [String]
-    var amphibiousRoutes: [String]
+    var coordinates: [(x: Int, y: Int)]
     
     var defenders: Force
-    var army: Army
     var owner: Int
     
-    init(terrName: String, adjacents: [String], amphibs: [String])
+    init(terrName: String, coordinateList: [(x: Int, y: Int)])
     {
         name = terrName
-        adjacencies = adjacents
-        amphibiousRoutes = amphibs
+        coordinates = coordinateList
         
         //territory starts out deserted
-        defenders = Force(units: [0, 0, 0, 0, 0], buildingStatus: 0, notDefender: false)
-        army = Army()
+        defenders = Force(units: (bowmen: 0, spearmen: 0), notDefender: false)
+        
         //-1 means it is deserted
         owner = -1
     }
@@ -34,34 +31,14 @@ class Territory
         return name
     }
     
-    func getNumAdjacenctTerritories() -> Int
+    func getCoordinates() -> [(x: Int, y: Int)]
     {
-        return adjacencies.count
-    }
-    
-    func getAdjacentTerritory(index: Int) -> String
-    {
-        return adjacencies[index]
-    }
-    
-    func getNumAmphibiousRoutes() -> Int
-    {
-        return amphibiousRoutes.count
-    }
-    
-    func getAmphibiousRoute(index: Int) -> String
-    {
-        return amphibiousRoutes[index]
+        return coordinates
     }
     
     func getDefenders() -> Force
     {
         return defenders
-    }
-    
-    func getArmy() -> Army
-    {
-        return army
     }
     
     func setDefenders(newDefenders: Force)

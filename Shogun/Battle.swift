@@ -11,45 +11,23 @@ class Battle
     var attackerForce: Force
     var defenderForce: Force
     
-    var isAmphibiousAssault: Bool
-    
-    init(attackers: Force, defenders: Force, amphibious: Bool)
+    init(attackers: Force, defenders: Force)
     {
-        attackerForce = attackers;
-        defenderForce = defenders;
-        isAmphibiousAssault = amphibious;
+        attackerForce = attackers
+        defenderForce = defenders
     }
     
     func conductBattle() -> Int
     {
-        var battleInconclusive = false;
-        
-        if(isAmphibiousAssault)
-        {
-            var numHits = 0
-            numHits += defenderForce.rangedAttacks()
-            numHits += defenderForce.meleeAttacks()
-            
-            attackerForce.casulities(numDead: numHits);
-        }
+        var battleInconclusive = false
         
         while(attackerForce.troopsLeft() > 0 && defenderForce.troopsLeft() > 0)
         {
             var attackersKilled = 0
             var defendersKilled = 0
             
-            defendersKilled += attackerForce.rangedAttacks()
-            attackersKilled += defenderForce.rangedAttacks()
-            
-            attackerForce.casulities(numDead: attackersKilled)
-            defenderForce.casulities(numDead: defendersKilled)
-            
-            //reset for melee attacks
-            attackersKilled = 0
-            defendersKilled = 0
-            
-            defendersKilled += attackerForce.meleeAttacks()
-            attackersKilled += defenderForce.meleeAttacks()
+            defendersKilled += attackerForce.attacks()
+            attackersKilled += defenderForce.attacks()
             
             attackerForce.casulities(numDead: attackersKilled)
             defenderForce.casulities(numDead: defendersKilled)

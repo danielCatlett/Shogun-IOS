@@ -1,4 +1,4 @@
-//  Gunners.swift
+//  Bowmen.swift
 //  Shogun
 //
 //  Created by Daniel Catlett on 3/12/18.
@@ -6,28 +6,20 @@
 
 import Foundation
 
-class Gunners
+class Bowmen
 {
-    var isSamurai: Bool
     var combatValue: Int
     var numPresent: Int
-    var ranged: Bool
     
     init (numbers: Int)
     {
-        isSamurai = false
-        combatValue = 4
+        combatValue = 6
         numPresent = numbers
-        ranged = true
     }
-    
-    func getSamurai() -> Bool { return isSamurai }
     
     func getCombatValue() -> Int { return combatValue }
     
     func getNumPresent() -> Int { return numPresent }
     
     func adjustNumPresent(numbers: Int) { numPresent += numbers }
-    
-    func getRanged() -> Bool { return ranged }
 }
