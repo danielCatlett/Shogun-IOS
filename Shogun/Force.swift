@@ -10,14 +10,11 @@ class Force
 {
     var bowmen: Bowmen
     var spearmen: Spearmen
-    var isAttacker: Bool
     
-    init(units: (bowmen: Int, spearmen: Int), notDefender: Bool)
+    init(units: (bowmen: Int, spearmen: Int))
     {
         bowmen = Bowmen(numbers: units.bowmen)
         spearmen = Spearmen(numbers: units.spearmen)
-    
-        isAttacker = notDefender
     }
     
     func adjustUnits(adjustingBowmen: Bool, num: Int)
@@ -64,12 +61,12 @@ class Force
         return numHits
     }
     
-    func unitAttack(attackValue: Int, strength: Int) -> Int
+    private func unitAttack(attackValue: Int, strength: Int) -> Int
     {
         var numHits = 0
         for _ in 0...strength
         {
-            let roll = arc4random_uniform(UInt32(attackValue)) + 1; //num between 1 and attackValue, inclusive
+            let roll = arc4random_uniform(UInt32(12)) + 1; //num between 1 and 12, inclusive
             if(roll <= attackValue)
             {
                 numHits += 1
@@ -79,54 +76,10 @@ class Force
         return numHits;
     }
     
-    func casulities(numDead: Int)
-    {
-        //num still alive
-        let remainingStrength = troopsLeft()
-    
-        if(remainingStrength > numDead)
-        {
-            let numToKill = chooseDead(numDead: numDead)
-            killUnits(numToKill: numToKill)
-        }
-        else if(remainingStrength <= numDead)
-        {
-            //set all of them to 0
-            var numToKill = [0]
-    
-            numToKill[0] = (bowmen.getNumPresent())
-            numToKill.append(spearmen.getNumPresent())
-     
-            killUnits(numToKill: numToKill)
-        }
-    }
-    
-    func killUnits(numToKill: [Int])
+    func killUnits(numToKill: (bowmen: Int, spearmen: Int))
     {
         //Kill the number of units we've been told to
-        bowmen.adjustNumPresent(numbers: numToKill[0])
-        spearmen.adjustNumPresent(numbers: numToKill[4])
-    }
-    
-    //this function is incomplete
-    //will need to take who to kill from the user
-    //instead of just putting 1 of each
-    func chooseDead(numDead: Int) -> [Int]
-    {
-        var choosenCasualities = [0]
-        var firstValSet = false
-        for _ in 1...numDead
-        {
-            if !firstValSet
-            {
-                choosenCasualities[0] = 1
-                firstValSet = true
-            }
-            else
-            {
-                choosenCasualities.append(1)
-            }
-        }
-        return choosenCasualities
+        bowmen.adjustNumPresent(numbers: numToKill.bowmen)
+        spearmen.adjustNumPresent(numbers: numToKill.spearmen)
     }
 }

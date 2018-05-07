@@ -25,11 +25,12 @@ class ViewController: UIViewController {
     {
         numPlayersLabel.text = Int(sender.value).description
         numPlayers = Int(sender.value)
+        print(String(sender.value))
     }
     
     @IBAction func startGame(_ sender: UIButton)
     {
-        performSegue(withIdentifier: "gameScreenVC", sender: self)
+        performSegue(withIdentifier: "gameScreenSegue", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -38,6 +39,5 @@ class ViewController: UIViewController {
         {
             destination.numPlayers = numPlayers
         }
-        
     }
 }

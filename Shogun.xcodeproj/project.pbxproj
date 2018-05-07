@@ -12,7 +12,6 @@
 		3F170E5E2057154C00B4CBA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F170E5C2057154C00B4CBA1 /* Main.storyboard */; };
 		3F170E602057154C00B4CBA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F170E5F2057154C00B4CBA1 /* Assets.xcassets */; };
 		3F170E632057154C00B4CBA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F170E612057154C00B4CBA1 /* LaunchScreen.storyboard */; };
-		3F170E6E2057161700B4CBA1 /* Battle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E6D2057161700B4CBA1 /* Battle.swift */; };
 		3F170E702057164B00B4CBA1 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E6F2057164B00B4CBA1 /* Board.swift */; };
 		3F170E742057166200B4CBA1 /* Force.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E732057166200B4CBA1 /* Force.swift */; };
 		3F170E762057167300B4CBA1 /* Territory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F170E752057167300B4CBA1 /* Territory.swift */; };
@@ -21,6 +20,9 @@
 		3F25AA4E205E2502001F3318 /* classicboard.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F25AA4D205E2502001F3318 /* classicboard.json */; };
 		3F25AA54205F4F39001F3318 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25AA53205F4F39001F3318 /* Game.swift */; };
 		3F303D9D209A9DAB00691CFA /* GameScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F303D9C209A9DAB00691CFA /* GameScreenViewController.swift */; };
+		3F303D9F209E4E4E00691CFA /* BattleScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F303D9E209E4E4E00691CFA /* BattleScreenViewController.swift */; };
+		3F303DA1209E669100691CFA /* UnitSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F303DA0209E669100691CFA /* UnitSelectorViewController.swift */; };
+		3F303DA320A0E56500691CFA /* CellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F303DA220A0E56500691CFA /* CellController.swift */; };
 		3F70E9102072AA39003EB88E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70E90F2072AA39003EB88E /* Player.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +34,6 @@
 		3F170E5F2057154C00B4CBA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F170E622057154C00B4CBA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F170E642057154C00B4CBA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F170E6D2057161700B4CBA1 /* Battle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Battle.swift; sourceTree = "<group>"; };
 		3F170E6F2057164B00B4CBA1 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		3F170E732057166200B4CBA1 /* Force.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Force.swift; sourceTree = "<group>"; };
 		3F170E752057167300B4CBA1 /* Territory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Territory.swift; sourceTree = "<group>"; };
@@ -41,6 +42,9 @@
 		3F25AA4D205E2502001F3318 /* classicboard.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = classicboard.json; sourceTree = "<group>"; };
 		3F25AA53205F4F39001F3318 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		3F303D9C209A9DAB00691CFA /* GameScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenViewController.swift; sourceTree = "<group>"; };
+		3F303D9E209E4E4E00691CFA /* BattleScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleScreenViewController.swift; sourceTree = "<group>"; };
+		3F303DA0209E669100691CFA /* UnitSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitSelectorViewController.swift; sourceTree = "<group>"; };
+		3F303DA220A0E56500691CFA /* CellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellController.swift; sourceTree = "<group>"; };
 		3F70E90F2072AA39003EB88E /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,16 +81,18 @@
 				3F170E79205716A600B4CBA1 /* Bowmen.swift */,
 				3F170E81205716C700B4CBA1 /* Spearmen.swift */,
 				3F170E732057166200B4CBA1 /* Force.swift */,
-				3F170E6D2057161700B4CBA1 /* Battle.swift */,
 				3F170E752057167300B4CBA1 /* Territory.swift */,
 				3F170E6F2057164B00B4CBA1 /* Board.swift */,
 				3F70E90F2072AA39003EB88E /* Player.swift */,
 				3F25AA53205F4F39001F3318 /* Game.swift */,
+				3F303DA0209E669100691CFA /* UnitSelectorViewController.swift */,
+				3F303D9E209E4E4E00691CFA /* BattleScreenViewController.swift */,
 				3F303D9C209A9DAB00691CFA /* GameScreenViewController.swift */,
-				3F25AA4D205E2502001F3318 /* classicboard.json */,
 				3F170E5A2057154C00B4CBA1 /* ViewController.swift */,
+				3F25AA4D205E2502001F3318 /* classicboard.json */,
 				3F170E5F2057154C00B4CBA1 /* Assets.xcassets */,
 				3F170E5C2057154C00B4CBA1 /* Main.storyboard */,
+				3F303DA220A0E56500691CFA /* CellController.swift */,
 				3F170E582057154C00B4CBA1 /* AppDelegate.swift */,
 				3F170E612057154C00B4CBA1 /* LaunchScreen.storyboard */,
 				3F170E642057154C00B4CBA1 /* Info.plist */,
@@ -171,12 +177,14 @@
 				3F170E5B2057154C00B4CBA1 /* ViewController.swift in Sources */,
 				3F170E592057154C00B4CBA1 /* AppDelegate.swift in Sources */,
 				3F170E7A205716A600B4CBA1 /* Bowmen.swift in Sources */,
+				3F303D9F209E4E4E00691CFA /* BattleScreenViewController.swift in Sources */,
 				3F170E762057167300B4CBA1 /* Territory.swift in Sources */,
 				3F170E82205716C700B4CBA1 /* Spearmen.swift in Sources */,
 				3F25AA54205F4F39001F3318 /* Game.swift in Sources */,
 				3F170E702057164B00B4CBA1 /* Board.swift in Sources */,
-				3F170E6E2057161700B4CBA1 /* Battle.swift in Sources */,
 				3F70E9102072AA39003EB88E /* Player.swift in Sources */,
+				3F303DA1209E669100691CFA /* UnitSelectorViewController.swift in Sources */,
+				3F303DA320A0E56500691CFA /* CellController.swift in Sources */,
 				3F170E742057166200B4CBA1 /* Force.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

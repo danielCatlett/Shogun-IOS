@@ -20,7 +20,7 @@ class Territory
         coordinates = coordinateList
         
         //territory starts out deserted
-        defenders = Force(units: (bowmen: 0, spearmen: 0), notDefender: false)
+        defenders = Force(units: (bowmen: 0, spearmen: 0))
         
         //-1 means it is deserted
         owner = -1

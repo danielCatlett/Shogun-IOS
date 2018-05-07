@@ -96,7 +96,6 @@ class Board
         {
             boardGrid[coordinate.x][coordinate.y] = name
             currentTerritorySize += 1
-            print(currentTerritorySize)
         }
         
         var availableNeighbors = [(x: Int, y: Int)]()
@@ -140,6 +139,21 @@ class Board
         {
             addGridspaceToTerritory(coordinate: territoriesToAdd[i], name: name)
         }
+    }
+    
+    func getTerritoryDictionary() -> [String: Territory]
+    {
+        return territories
+    }
+    
+    func setTerritoryDictionary(updatedTerrDict: [String: Territory])
+    {
+        territories = updatedTerrDict
+    }
+    
+    func getTerritory(territoryName: String) -> Territory
+    {
+        return territories[territoryName]!
     }
     
     func grabTerritoryNames()
