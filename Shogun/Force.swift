@@ -64,7 +64,7 @@ class Force
     private func unitAttack(attackValue: Int, strength: Int) -> Int
     {
         var numHits = 0
-        for _ in 0...strength
+        for _ in 0 ..< strength
         {
             let roll = arc4random_uniform(UInt32(12)) + 1; //num between 1 and 12, inclusive
             if(roll <= attackValue)
@@ -79,7 +79,7 @@ class Force
     func killUnits(numToKill: (bowmen: Int, spearmen: Int))
     {
         //Kill the number of units we've been told to
-        bowmen.adjustNumPresent(numbers: numToKill.bowmen)
-        spearmen.adjustNumPresent(numbers: numToKill.spearmen)
+        bowmen.adjustNumPresent(numbers: -1 * numToKill.bowmen)
+        spearmen.adjustNumPresent(numbers: -1 * numToKill.spearmen)
     }
 }

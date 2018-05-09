@@ -8,7 +8,7 @@ import UIKit
 
 protocol UnitSelectorViewControllerDelegate: class
 {
-    func unitsChanged(units: (bowmen: Int, spearmen: Int)?)
+    func unitsChanged(unitsPassing: (bowmen: Int, spearmen: Int)?)
 }
 
 class UnitSelectorViewController: UIViewController
@@ -22,10 +22,12 @@ class UnitSelectorViewController: UIViewController
     @IBOutlet weak var cancelButton: UIButton!
     
     var units = (bowmen: 0, spearmen: 0)
+    var unitsPassing = (bowmen: 0, spearmen: 0)
     var context = ""
+    var attackersDying = false
     var unitsToKill = 0
     
-    weak var delegate: UnitSelectorViewControllerDelegate?
+    weak var delegate: UnitSelectorViewControllerDelegate!
     
     override func viewDidLoad()
     {
@@ -33,7 +35,10 @@ class UnitSelectorViewController: UIViewController
         
         if(context == "casualties")
         {
-            confirmButton.isEnabled = false
+            if(unitsToKill != 0)
+            {
+                confirmButton.isEnabled = false
+            }
             
             bowmenLabel.text = "0"
             bowmenStepper.value = 0
@@ -64,43 +69,48 @@ class UnitSelectorViewController: UIViewController
         {
             titleLabel.text = "Select Who Will Move"
         }
-        else
+        else if(attackersDying)
         {
-            titleLabel.text = "Kill " + String(unitsToKill) + " Units"
+            titleLabel.text = "Attacker, Kill " + String(unitsToKill) + " of Your Units"
             cancelButton.isEnabled = false
         }
-        
-        stepperDebugger()
+        else
+        {
+            titleLabel.text = "Defender, Kill " + String(unitsToKill) + " of Your Units"
+            cancelButton.isEnabled = false
+        }
     }
     
     @IBAction func bowmenStepped(_ sender: UIStepper)
     {
         bowmenLabel.text = String(Int(bowmenStepper.value))
-//        units.bowmen = Int(sender.value)
-//        delegate?.unitsChanged(units: units)
-//
-//        if(context == "casualties")
-//        {
-//            spearmenStepper.maximumValue = Double(unitsToKill - Int(bowmenStepper.value))
-//            updateCounter()
-//        }
         
-        stepperDebugger()
+        if(context == "casualties")
+        {
+            unitsPassing.bowmen = Int(sender.value)
+            spearmenStepper.maximumValue = Double(min(unitsToKill - Int(bowmenStepper.value), units.spearmen))
+            updateCounter()
+        }
+        else if(context == "attacking")
+        {
+            units.bowmen = Int(sender.value)
+        }
     }
     
     @IBAction func spearmenStepped(_ sender: UIStepper)
     {
         spearmenLabel.text = String(Int(spearmenStepper.value))
-//        units.spearmen = Int(sender.value)
-//        delegate?.unitsChanged(units: units)
-//
-//        if(context == "casualties")
-//        {
-//            bowmenStepper.maximumValue = Double(unitsToKill - Int(spearmenStepper.value))
-//            updateCounter()
-//        }
-        
-        stepperDebugger()
+
+        if(context == "casualties")
+        {
+            unitsPassing.spearmen = Int(sender.value)
+            bowmenStepper.maximumValue = Double(min(unitsToKill - Int(spearmenStepper.value), units.bowmen))
+            updateCounter()
+        }
+        else if(context == "attacking")
+        {
+            units.spearmen = Int(sender.value)
+        }
     }
     
     private func updateCounter()
@@ -116,6 +126,14 @@ class UnitSelectorViewController: UIViewController
     
     @IBAction func confirmButtonPressed(_ sender: UIButton)
     {
+        if(context == "casualties")
+        {
+            delegate.unitsChanged(unitsPassing: unitsPassing)
+        }
+        else if(context == "attacking")
+        {
+            delegate.unitsChanged(unitsPassing: units)
+        }
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -127,14 +145,8 @@ class UnitSelectorViewController: UIViewController
         {
             units.bowmen = -100
             units.spearmen = -100
-            delegate?.unitsChanged(units: units)
+            delegate.unitsChanged(unitsPassing: units)
         }
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    func stepperDebugger()
-    {
-        print("Bowmen: Min " + String(bowmenStepper.minimumValue) + " Max " + String(bowmenStepper.maximumValue) + " Value " + String(bowmenStepper.value))
-        print("Spearmen: Min " + String(spearmenStepper.minimumValue) + " Max " + String(spearmenStepper.maximumValue) + " Value " + String(spearmenStepper.value))
     }
 }

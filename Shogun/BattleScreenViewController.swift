@@ -12,7 +12,7 @@ protocol BattleScreenViewControllerDelegate: class
     func defendersChanged(force: Force?)
 }
 
-class BattleScreenViewController: UIViewController
+class BattleScreenViewController: UIViewController, UnitSelectorViewControllerDelegate
 {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLable: UILabel!
@@ -44,13 +44,18 @@ class BattleScreenViewController: UIViewController
         
         titleLabel.text = "Battle of " + territoryName
         
+        setLabels()
+        
+        retreatButton.isEnabled = false
+    }
+    
+    func setLabels()
+    {
         attackBowmenLabel.text = String(attackingForce.getBowmen().getNumPresent())
         attackSpearmenLabel.text = String(attackingForce.getSpearmen().getNumPresent())
         
         defendBowmenLabel.text = String(defendingForce.getBowmen().getNumPresent())
         defendSpearmenLabel.text = String(defendingForce.getSpearmen().getNumPresent())
-        
-        retreatButton.isEnabled = false
     }
     
     @IBAction func attackButtonPressed(_ sender: UIButton)
@@ -66,10 +71,10 @@ class BattleScreenViewController: UIViewController
             performSegue(withIdentifier: "unitSelectorScreenSegue", sender: self)
             unitsKilled = 0
             
-            turn = "defender"
+            attackButton.setTitle("Counterattack!", for: .normal)
             retreatButton.isEnabled = false
         }
-        else
+        else if(turn == "defender")
         {
             unitsKilled += defendingForce.attacks()
             if(unitsKilled > attackingForce.troopsLeft())
@@ -78,10 +83,18 @@ class BattleScreenViewController: UIViewController
             }
             performSegue(withIdentifier: "unitSelectorScreenSegue", sender: self)
             
+            attackButton.setTitle("Update Battle", for: .normal)
+            turn = "update"
+            unitsKilled = 0
+        }
+        else
+        {
             attackingForce.killUnits(numToKill: attackerCasualties)
             delegate?.attackersChanged(force: attackingForce)
             defendingForce.killUnits(numToKill: defenderCasualties)
             delegate?.defendersChanged(force: defendingForce)
+            
+            setLabels()
             
             //if the battle has been won
             if(attackingForce.troopsLeft() == 0 || defendingForce.troopsLeft() == 0)
@@ -97,18 +110,20 @@ class BattleScreenViewController: UIViewController
                 }
                 
                 let alertController = UIAlertController(title: "The Battle Has Been Won", message: message, preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Huzzah!", style: UIAlertActionStyle.default, handler: nil))
+                alertController.addAction(UIAlertAction(title: "Huzzah!", style: UIAlertActionStyle.default, handler: {
+                    action in
+                    self.dismiss(animated: true, completion: nil)
+                }))
                 self.present(alertController, animated: true, completion: nil)
-                
-                self.dismiss(animated: true, completion: nil)
             }
             //reset everything for the next round
             else
             {
-                unitsKilled = 0
                 defenderCasualties.bowmen = 0
                 defenderCasualties.spearmen = 0
                 retreatButton.isEnabled = true
+                turn = "attacker"
+                attackButton.setTitle("Attack!", for: .normal)
             }
         }
     }
@@ -119,7 +134,6 @@ class BattleScreenViewController: UIViewController
         let alertController = UIAlertController(title: "Stand and fight you coward!", message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: {
             action in
-            
             self.dismiss(animated: true, completion: nil)
         }))
         alertController.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
@@ -132,27 +146,30 @@ class BattleScreenViewController: UIViewController
         {
             if(turn == "attacker")
             {
-                destination.units = (bowmen: attackingForce.getBowmen().getNumPresent(), spearmen: attackingForce.getSpearmen().getNumPresent())
+                destination.units = (bowmen: defendingForce.getBowmen().getNumPresent(), spearmen: defendingForce.getSpearmen().getNumPresent())
+                destination.attackersDying = false
             }
             else
             {
-                destination.units = (bowmen: defendingForce.getBowmen().getNumPresent(), spearmen: defendingForce.getSpearmen().getNumPresent())
+                destination.units = (bowmen: attackingForce.getBowmen().getNumPresent(), spearmen: attackingForce.getSpearmen().getNumPresent())
+                destination.attackersDying = true
             }
             destination.context = "casualties"
             destination.unitsToKill = unitsKilled
-            destination.delegate = self as? UnitSelectorViewControllerDelegate
+            destination.delegate = self as UnitSelectorViewControllerDelegate
         }
     }
     
-    func unitsChanged(units: (bowmen: Int, spearmen: Int)?)
+    func unitsChanged(unitsPassing: (bowmen: Int, spearmen: Int)?)
     {
         if(turn == "attacker")
         {
-            attackerCasualties = units!
+            turn = "defender"
+            defenderCasualties = unitsPassing!
         }
         else
         {
-            defenderCasualties = units!
+            attackerCasualties = unitsPassing!
         }
     }
 }

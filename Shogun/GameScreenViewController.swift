@@ -6,7 +6,7 @@
 
 import UIKit
 
-class GameScreenViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate
+class GameScreenViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UnitSelectorViewControllerDelegate
 {
     @IBOutlet weak var boardView: UICollectionView!
     @IBOutlet weak var textbox: UILabel!
@@ -16,9 +16,9 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
     var numPlayers = 0
     
     var board = Board()
-    var attackingForce = Force(units: (bowmen: 8, spearmen: 12))
-    var defendingForce = Force(units: (bowmen: 8, spearmen: 12))
-    let territoryName = "Bingo"
+    var attackingForce = Force(units: (bowmen: 4, spearmen: 0))
+    var defendingForce = Force(units: (bowmen: 4, spearmen: 0))
+    var territoryName = "Bingo"
     
     var territoryNumbers = [String]()
     var territoryOwners = [Int]()
@@ -31,12 +31,17 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
     var roundZeroRound = 0
     var unitsPlaced = 0
     
+    var unitSelectorNums = (bowmen: 0, spearmen: 0)
+    var unitSelectorSent = (bowmen: 0, spearmen: 0)
+    
+    var validTargets = [Int]()
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         
-        confirmButton.isEnabled = false
+        //confirmButton.isEnabled = false
         cancelButton.isEnabled = false
         
         setup()
@@ -57,6 +62,15 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
             destination.attackingForce = attackingForce
             destination.defendingForce = defendingForce
             destination.territoryName = territoryName
+        }
+        if let destination = segue.destination as? UnitSelectorViewController
+        {
+            destination.units = unitSelectorNums
+            destination.delegate = self as UnitSelectorViewControllerDelegate
+            if(gameState == "picking attack force")
+            {
+                destination.context = "attacking"
+            }
         }
     }
     
@@ -125,11 +139,37 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
         }
         else if(gameState == "picking attack force")
         {
-            let validTargets = getValidTargets(index: indexPath.row)
+            validTargets = getValidTargets(index: indexPath.row)
             if(validTargets.count > 0)
             {
-                
+                unitSelectorNums.bowmen = territory.getDefenders().getBowmen().getNumPresent()
+                unitSelectorNums.spearmen = territory.getDefenders().getSpearmen().getNumPresent()
+                performSegue(withIdentifier: "unitSelectorScreenSegue2", sender: self)
             }
+        }
+        else if(gameState == "picking target")
+        {
+            if(!validTargets.contains(indexPath.row))
+            {
+                textbox.text = "That is not a valid target"
+            }
+            else
+            {
+                territoryName = territory.getName()
+                defendingForce = territory.getDefenders()
+                performSegue(withIdentifier: "battleScreenSegue", sender: self)
+            }
+        }
+    }
+    
+    //unit selector delegate
+    func unitsChanged(unitsPassing: (bowmen: Int, spearmen: Int)?)
+    {
+        if(gameState == "picking attack force" && unitsPassing!.bowmen != -100)
+        {
+            attackingForce = Force(units: unitsPassing!)
+            gameState = "picking target"
+            textbox.text = "Pick a target next to this force."
         }
     }
     
