@@ -130,7 +130,7 @@ class UnitSelectorViewController: UIViewController
         {
             delegate.unitsChanged(unitsPassing: unitsPassing)
         }
-        else if(context == "attacking")
+        else if(context == "attacking" || context == "moving")
         {
             delegate.unitsChanged(unitsPassing: units)
         }

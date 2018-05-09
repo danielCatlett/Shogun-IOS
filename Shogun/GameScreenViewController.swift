@@ -20,6 +20,8 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
     var leftoverForce = Force(units: (bowmen: 0, spearmen: 0))
     var attackingIndex = 0
     var defendingForce = Force(units: (bowmen: 4, spearmen: 0))
+    var movementForce = Force(units: (bowmen: 0, spearmen: 0))
+    var movingFrom = 0
     var defendingIndex = 0
     var territoryName = "Bingo"
     
@@ -38,6 +40,9 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
     var unitSelectorSent = (bowmen: 0, spearmen: 0)
     
     var validTargets = [Int]()
+    
+    var spearmenToPlace = 0
+    var bowmenToPlace = 0
     
     override func viewDidLoad()
     {
@@ -58,6 +63,7 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
         if(gameState == "picking attack force")
         {
             gameState = "noncombat movement"
+            textbox.text = "Select a territory you own to move its forces somewhere else, or press confirm to end your turn."
         }
     }
     
@@ -77,6 +83,10 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
             if(gameState == "picking attack force")
             {
                 destination.context = "attacking"
+            }
+            else if(gameState == "noncombat movement")
+            {
+                destination.context = "moving"
             }
         }
     }
@@ -171,7 +181,20 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
         }
         else if(gameState == "noncombat movement")
         {
-            
+            if(territoryIsOwned)
+            {
+                unitSelectorNums.bowmen = territory.getDefenders().getBowmen().getNumPresent()
+                unitSelectorNums.spearmen = territory.getDefenders().getSpearmen().getNumPresent()
+                movingFrom = indexPath.row
+                performSegue(withIdentifier: "unitSelectorScreenSegue2", sender: self)
+            }
+        }
+        else if(gameState == "noncombat target")
+        {
+            if(territoryIsOwned && indexPath.row != movingFrom)
+            {
+                combineForces(index: indexPath.row)
+            }
         }
     }
     
@@ -189,6 +212,17 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
             
             gameState = "picking target"
             textbox.text = "Pick a target next to this force."
+        }
+        else if(gameState == "noncombat movement" && unitsPassing!.bowmen != -100)
+        {
+            //remove those troops from the initial square
+            board.getTerritory(index: movingFrom).getDefenders().killUnits(numToKill: unitsPassing!)
+            territoryNumbers[movingFrom] = String(board.getTerritory(index: movingFrom).getDefenders().troopsLeft())
+            
+            //add these troops to the new square
+            movementForce = Force(units: (bowmen: unitsPassing!.bowmen, spearmen: unitsPassing!.spearmen))
+            gameState = "noncombat target"
+            textbox.text = "Pick where these troops are going."
         }
     }
     
@@ -239,6 +273,16 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
         //next round of combat
         gameState = "picking attack force"
         textbox.text = playerColors[turn] + ", pick a force to attack with. Or press confirm to end combat"
+        fireUpdate()
+    }
+    
+    func combineForces(index: Int)
+    {
+        let bowmenToAdd = movementForce.getBowmen().getNumPresent()
+        let spearmenToAdd = movementForce.getSpearmen().getNumPresent()
+        board.getTerritory(index: index).getDefenders().adjustUnits(adjustingBowmen: true, num: bowmenToAdd)
+        board.getTerritory(index: index).getDefenders().adjustUnits(adjustingBowmen: false, num: spearmenToAdd)
+        territoryNumbers[index] = String(board.getTerritory(index: index).getDefenders().troopsLeft())
         fireUpdate()
     }
     
@@ -383,6 +427,30 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
         return false
     }
     
+    func placeUnits()
+    {
+        let numKoku = players[turn].getTerritories().count / 3
+        players[turn].setKoku(numKoku: numKoku)
+        spearmenToPlace = numKoku
+        bowmenToPlace = numKoku / 2
+        textbox.text = "You have " + String(spearmenToPlace) + " spearmen and " + String(bowmenToPlace) + " bowmen to place."
+    }
+    
+    func checkForWinner()
+    {
+        let numTerritories = board.getNumTerritories()
+        
+        //check to see if anyone has half of the territories on the board
+        for i in 0 ..< numPlayers
+        {
+            if(players[i].getTerritories().count >= numTerritories / 2)
+            {
+                textbox.text = playerColors[i] + " won by conquering half the map!"
+                gameState = "game over"
+            }
+        }
+    }
+    
     func fireUpdate()
     {
         //place first spearmen
@@ -435,6 +503,24 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
             round = 1
             gameState = "picking attack force"
             textbox.text = playerColors[turn] + ", pick a force to attack with. Or press confirm to end combat"
+        }
+        else if(gameState == "noncombat target")
+        {
+            gameState = "placing units"
+            placeUnits()
+        }
+        else if(gameState == "noncombat target")
+        {
+            if(turn == numPlayers - 1)
+            {
+                turn = 0
+                round += 1
+                checkForWinner()
+            }
+            else
+            {
+                turn += 1
+            }
         }
         setTroopNums()
         setOwners()

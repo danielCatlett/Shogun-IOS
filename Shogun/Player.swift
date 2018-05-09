@@ -25,11 +25,9 @@ class Player
         return koku
     }
     
-    //Either add or subtract koku, for when it is spent or
-    //aquired by players
-    func changeNumKoku(numChange: Int)
+    func setKoku(numKoku: Int)
     {
-        koku += numChange
+        koku = numKoku
     }
     
     func addTerritory(index: Int)
