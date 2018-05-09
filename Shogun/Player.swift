@@ -37,17 +37,16 @@ class Player
         territories.append(index)
     }
     
-    func removeTerritory(index: Int) -> Bool
+    func removeTerritory(territoryIndex: Int)
     {
         for i in 0 ..< territories.count
         {
-            if index == territories[i]
+            if territoryIndex == territories[i]
             {
-                territories.remove(at: index)
-                return true
+                territories.remove(at: i)
+                break
             }
         }
-        return false
     }
     
     func getSword() -> Int

@@ -6,7 +6,7 @@
 
 import UIKit
 
-class GameScreenViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UnitSelectorViewControllerDelegate
+class GameScreenViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UnitSelectorViewControllerDelegate, BattleScreenViewControllerDelegate
 {
     @IBOutlet weak var boardView: UICollectionView!
     @IBOutlet weak var textbox: UILabel!
@@ -17,7 +17,10 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
     
     var board = Board()
     var attackingForce = Force(units: (bowmen: 4, spearmen: 0))
+    var leftoverForce = Force(units: (bowmen: 0, spearmen: 0))
+    var attackingIndex = 0
     var defendingForce = Force(units: (bowmen: 4, spearmen: 0))
+    var defendingIndex = 0
     var territoryName = "Bingo"
     
     var territoryNumbers = [String]()
@@ -52,7 +55,10 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
     
     @IBAction func confirmButton(_ sender: UIButton)
     {
-        performSegue(withIdentifier: "battleScreenSegue", sender: self)
+        if(gameState == "picking attack force")
+        {
+            gameState = "noncombat movement"
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -62,6 +68,7 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
             destination.attackingForce = attackingForce
             destination.defendingForce = defendingForce
             destination.territoryName = territoryName
+            destination.delegate = self as BattleScreenViewControllerDelegate
         }
         if let destination = segue.destination as? UnitSelectorViewController
         {
@@ -144,6 +151,7 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
             {
                 unitSelectorNums.bowmen = territory.getDefenders().getBowmen().getNumPresent()
                 unitSelectorNums.spearmen = territory.getDefenders().getSpearmen().getNumPresent()
+                attackingIndex = indexPath.row
                 performSegue(withIdentifier: "unitSelectorScreenSegue2", sender: self)
             }
         }
@@ -157,8 +165,13 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
             {
                 territoryName = territory.getName()
                 defendingForce = territory.getDefenders()
+                defendingIndex = indexPath.row
                 performSegue(withIdentifier: "battleScreenSegue", sender: self)
             }
+        }
+        else if(gameState == "noncombat movement")
+        {
+            
         }
     }
     
@@ -168,9 +181,65 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
         if(gameState == "picking attack force" && unitsPassing!.bowmen != -100)
         {
             attackingForce = Force(units: unitsPassing!)
+            
+            //store who will be left behind to defend the territory
+            let numBowmen = board.getTerritory(index: attackingIndex).getDefenders().getBowmen().getNumPresent() - unitsPassing!.bowmen
+            let numSpearmen = board.getTerritory(index: attackingIndex).getDefenders().getSpearmen().getNumPresent() - unitsPassing!.spearmen
+            leftoverForce = Force(units: (bowmen: numBowmen, spearmen: numSpearmen))
+            
             gameState = "picking target"
             textbox.text = "Pick a target next to this force."
         }
+    }
+    
+    //battle screen delegates
+    func forcesChanged(attackerForce: Force?, defenderForce: Force?)
+    {
+        //attackers
+        attackingForce = attackerForce!
+        board.getTerritory(index: attackingIndex).setDefenders(newDefenders: leftoverForce)
+        territoryNumbers[attackingIndex] = String(board.getTerritory(index: attackingIndex).getDefenders().troopsLeft())
+        
+        //defenders
+        defendingForce = defenderForce!
+        figureOutWinner()
+    }
+    
+    func figureOutWinner()
+    {
+        let territory = board.getTerritory(index: defendingIndex)
+        
+        //if attacker won
+        if(defendingForce.troopsLeft() <= 0 && attackingForce.troopsLeft() > 0)
+        {
+            //set the correct defenders and owner at the territory level
+            territory.setDefenders(newDefenders: attackingForce)
+            territory.setOwner(newOwner: turn)
+            
+            //set the correct owner at the player level
+            let originalOwner = territoryOwners[defendingIndex]
+            let newOwner = turn
+            players[newOwner].addTerritory(index: defendingIndex)
+            //find where the territoryIndex is and remove it
+            if(originalOwner != -1)
+            {
+                players[originalOwner].removeTerritory(territoryIndex: defendingIndex)
+            }
+            
+            //set the correct owner at the ui level
+            territoryNumbers[defendingIndex] = String(territory.getDefenders().troopsLeft())
+            territoryOwners[defendingIndex] = territory.getOwner()
+        }
+        else if(attackingForce.troopsLeft() <= 0)
+        {
+            board.getTerritory(index: defendingIndex).setDefenders(newDefenders: defendingForce)
+            territoryNumbers[defendingIndex] = String(board.getTerritory(index: defendingIndex).getDefenders().troopsLeft())
+        }
+        
+        //next round of combat
+        gameState = "picking attack force"
+        textbox.text = playerColors[turn] + ", pick a force to attack with. Or press confirm to end combat"
+        fireUpdate()
     }
     
     //MARK: Game logic functions
@@ -365,7 +434,7 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
             turn = 0
             round = 1
             gameState = "picking attack force"
-            textbox.text = playerColors[turn] + ", pick a force to attack with."
+            textbox.text = playerColors[turn] + ", pick a force to attack with. Or press confirm to end combat"
         }
         setTroopNums()
         setOwners()

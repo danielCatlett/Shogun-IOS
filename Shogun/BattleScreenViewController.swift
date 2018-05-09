@@ -8,8 +8,7 @@ import UIKit
 
 protocol BattleScreenViewControllerDelegate: class
 {
-    func attackersChanged(force: Force?)
-    func defendersChanged(force: Force?)
+    func forcesChanged(attackerForce: Force?, defenderForce: Force?)
 }
 
 class BattleScreenViewController: UIViewController, UnitSelectorViewControllerDelegate
@@ -35,7 +34,7 @@ class BattleScreenViewController: UIViewController, UnitSelectorViewControllerDe
     
     var unitsKilled = 0
     
-    weak var delegate: BattleScreenViewControllerDelegate?
+    weak var delegate: BattleScreenViewControllerDelegate!
     
     override func viewDidLoad()
     {
@@ -90,15 +89,14 @@ class BattleScreenViewController: UIViewController, UnitSelectorViewControllerDe
         else
         {
             attackingForce.killUnits(numToKill: attackerCasualties)
-            delegate?.attackersChanged(force: attackingForce)
             defendingForce.killUnits(numToKill: defenderCasualties)
-            delegate?.defendersChanged(force: defendingForce)
             
             setLabels()
             
             //if the battle has been won
             if(attackingForce.troopsLeft() == 0 || defendingForce.troopsLeft() == 0)
             {
+                delegate?.forcesChanged(attackerForce: attackingForce, defenderForce: defendingForce)
                 var message = ""
                 if(attackingForce.troopsLeft() == 0)
                 {
@@ -130,6 +128,7 @@ class BattleScreenViewController: UIViewController, UnitSelectorViewControllerDe
     
     @IBAction func retreatButtonPressed(_ sender: UIButton)
     {
+        delegate.forcesChanged(attackerForce: attackingForce, defenderForce: defendingForce)
         let message = "Are you sure you want to retreat?"
         let alertController = UIAlertController(title: "Stand and fight you coward!", message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: {
