@@ -9,20 +9,20 @@ import Foundation
 class Territory
 {
     var name: String
-    var coordinates: [(x: Int, y: Int)]
+    var index: Int
     
     var defenders: Force
     var owner: Int
     
-    init(terrName: String, coordinateList: [(x: Int, y: Int)])
+    init(terrName: String, indexOfTerritory: Int)
     {
         name = terrName
-        coordinates = coordinateList
+        index = indexOfTerritory
         
         //territory starts out deserted
         defenders = Force(units: (bowmen: 0, spearmen: 0))
         
-        //-1 means it is deserted
+        //-1 means it is unowned
         owner = -1
     }
     
@@ -31,9 +31,9 @@ class Territory
         return name
     }
     
-    func getCoordinates() -> [(x: Int, y: Int)]
+    func getIndex() -> Int
     {
-        return coordinates
+        return index
     }
     
     func getDefenders() -> Force

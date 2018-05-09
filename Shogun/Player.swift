@@ -9,11 +9,11 @@ import Foundation
 class Player
 {
     private var koku: Int
-    private var territories: [String]
+    private var territories: [Int]
     
     private var sword: Int
     
-    init(numKoku: Int, territoryList: [String], swordNum: Int)
+    init(numKoku: Int, territoryList: [Int], swordNum: Int)
     {
         koku = numKoku
         territories = territoryList
@@ -32,16 +32,16 @@ class Player
         koku += numChange
     }
     
-    func addTerritory(territoryName: String)
+    func addTerritory(index: Int)
     {
-        territories.append(territoryName)
+        territories.append(index)
     }
     
-    func removeTerritory(territoryName: String) -> Bool
+    func removeTerritory(index: Int) -> Bool
     {
-        for index in 0 ..< territories.count
+        for i in 0 ..< territories.count
         {
-            if territoryName == territories[index]
+            if index == territories[i]
             {
                 territories.remove(at: index)
                 return true
@@ -60,7 +60,7 @@ class Player
         sword = swordNum
     }
     
-    func getTerritories() -> [String]
+    func getTerritories() -> [Int]
     {
         return territories
     }

@@ -9,151 +9,44 @@ import Foundation
 class Board
 {
     var territoryNames = [String]()
-    var territories = [String: Territory]()
-    var boardGrid = [[String]]()
+    var territories = [Territory]()
 
     init()
     {
-        //this var is hiding below
-        //it only has a global scope because it has to
-        //see the big comment
-        currentTerritorySize = 0
-        
         grabTerritoryNames()
         buildBoard()
     }
     
     func buildBoard()
     {
-        //put initial values in the grid
-        for i in 0...9
+        var territoryNamesMutable = territoryNames //we want to be able to pull names out
+        for i in 0...69
         {
-            boardGrid.append([String]())
-            for _ in 0...9
-            {
-                boardGrid[i].append("")
-            }
-        }
-        
-        var unusedNames = territoryNames
-        //create all the territories
-        //TODO: MAKE IT A SPIRAL
-        for i in 0 ..< boardGrid.count
-        {
-            for j in 0 ..< boardGrid[0].count
-            {
-                if(unusedNames.count > 0)
-                {
-                    unusedNames = createTerritory(namesLeft: unusedNames, coordinate: (x: i, y: j))
-                }
-                else
-                {
-                    unusedNames = territoryNames
-                    unusedNames = createTerritory(namesLeft: unusedNames, coordinate: (x: i, y: j))
-                }
-            }
+            let nameIndex = Int(arc4random_uniform(UInt32(territoryNamesMutable.count)))
+            let terr = Territory(terrName: territoryNamesMutable[nameIndex], indexOfTerritory: i)
+            territories.append(terr)
+            territoryNamesMutable.remove(at: nameIndex)
         }
     }
     
-    /*
-     This is a global variable because this information needs
-     to be known in real time by addGridspaceToTerritory,
-     and that function is recursive. This isn't by the other
-     classvars because nobody else should really be using it except
-     for the functions that deal with creating a territory
-    */
-    private var currentTerritorySize: Int
-    
-    func createTerritory(namesLeft: [String], coordinate: (x: Int, y: Int)) -> [String]
-    {
-        //start by checking that this coordinate isn't already in a territory
-        if(boardGrid[coordinate.x][coordinate.y] != "")
-        {
-            return namesLeft
-        }
-        
-        var namesLeftMutable = namesLeft
-        
-        //pick a name for the tile
-        let index = Int(arc4random_uniform(UInt32(namesLeftMutable.count)))
-        let choosenName = namesLeftMutable[index]
-        namesLeftMutable.remove(at: index)
-        
-        currentTerritorySize = 0
-        addGridspaceToTerritory(coordinate: coordinate, name: choosenName)
-        
-        return namesLeftMutable
-    }
-    
-    func addGridspaceToTerritory(coordinate: (x: Int, y: Int), name: String)
-    {
-        //handle adding the first tile
-        if(currentTerritorySize == 5)
-        {
-            return
-        }
-        else
-        {
-            boardGrid[coordinate.x][coordinate.y] = name
-            currentTerritorySize += 1
-        }
-        
-        var availableNeighbors = [(x: Int, y: Int)]()
-        
-        //check the four surrounding neighbors to see if
-        //they are able to join a territory
-        
-        //above
-        if(coordinate.y - 1 >= 0 && boardGrid[coordinate.x][coordinate.y - 1] == "")
-        {
-            availableNeighbors.append((x: coordinate.x, y: coordinate.y - 1))
-        }
-        //left
-        if(coordinate.x - 1 >= 0 && boardGrid[coordinate.x - 1][coordinate.y] == "")
-        {
-            availableNeighbors.append((x: coordinate.x - 1, y: coordinate.y))
-        }
-        //right
-        if(coordinate.x + 1 < boardGrid.count && boardGrid[coordinate.x + 1][coordinate.y] == "")
-        {
-            availableNeighbors.append((x: coordinate.x + 1, y: coordinate.y))
-        }
-        //below
-        if(coordinate.y + 1 < boardGrid[0].count && boardGrid[coordinate.x][coordinate.y + 1] == "")
-        {
-            availableNeighbors.append((x: coordinate.x, y: coordinate.y + 1))
-        }
-        
-        var territoriesToAdd = [(x: Int, y: Int)]()
-        //see if we are adding each neighbor
-        for i in 0 ..< availableNeighbors.count
-        {
-            if(Int(arc4random_uniform(UInt32(3))) == 0)
-            {
-                territoriesToAdd.append((x: availableNeighbors[i].x, y: availableNeighbors[i].y))
-            }
-        }
-        
-        //recursively call for each territory freshly added
-        for i in 0 ..< territoriesToAdd.count
-        {
-            addGridspaceToTerritory(coordinate: territoriesToAdd[i], name: name)
-        }
-    }
-    
-    func getTerritoryDictionary() -> [String: Territory]
+    func getTerritoryList() -> [Territory]
     {
         return territories
     }
     
-    func setTerritoryDictionary(updatedTerrDict: [String: Territory])
+    func setTerritoryList(updatedTerrDict: [Territory])
     {
         territories = updatedTerrDict
     }
     
-    func getTerritory(territoryName: String) -> Territory
+    func getTerritory(index: Int) -> Territory
     {
-        return territories[territoryName]!
+        return territories[index]
+    }
+    
+    func getNumTerritories() -> Int
+    {
+        return territories.count
     }
     
     func grabTerritoryNames()
