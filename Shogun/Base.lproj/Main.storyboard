@@ -214,7 +214,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hNB-up-bje">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BOW2" translatesAutoresizingMaskIntoConstraints="NO" id="hNB-up-bje">
                                 <rect key="frame" x="50" y="159.5" width="120" height="120"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGr-K6-SLW">
@@ -267,7 +267,7 @@
                                 <rect key="frame" x="322" y="397" width="53" height="163"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A6g-JL-RgZ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SPEAR1" translatesAutoresizingMaskIntoConstraints="NO" id="A6g-JL-RgZ">
                                 <rect key="frame" x="50" y="419" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="Sk5-Xi-Hz4"/>
@@ -478,28 +478,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BFC-n7-aTQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SPEAR2" translatesAutoresizingMaskIntoConstraints="NO" id="BFC-n7-aTQ">
                                 <rect key="frame" x="214" y="467" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="5t2-EZ-cMz"/>
                                     <constraint firstAttribute="width" constant="75" id="oaQ-R0-zGQ"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4fY-da-wqW">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SPEAR2" translatesAutoresizingMaskIntoConstraints="NO" id="4fY-da-wqW">
                                 <rect key="frame" x="214" y="221" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Kkw-or-Ucv"/>
                                     <constraint firstAttribute="width" constant="75" id="eMP-7F-PAY"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="koD-gu-cuX">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BOW1" translatesAutoresizingMaskIntoConstraints="NO" id="koD-gu-cuX">
                                 <rect key="frame" x="24.5" y="468.5" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="cI2-nD-ChO"/>
                                     <constraint firstAttribute="height" constant="75" id="dT4-fZ-W7g"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tme-HL-G3T">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BOW1" translatesAutoresizingMaskIntoConstraints="NO" id="tme-HL-G3T">
                                 <rect key="frame" x="24.5" y="221" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="evf-AT-653"/>
@@ -607,6 +607,12 @@
             <point key="canvasLocation" x="-1153" y="32"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="BOW1" width="75" height="75"/>
+        <image name="BOW2" width="120" height="120"/>
+        <image name="SPEAR1" width="120" height="120"/>
+        <image name="SPEAR2" width="75" height="75"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="efN-Pu-cnz"/>
     </inferredMetricsTieBreakers>
