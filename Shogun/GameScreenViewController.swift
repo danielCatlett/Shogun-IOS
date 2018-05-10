@@ -63,7 +63,12 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
         if(gameState == "picking attack force")
         {
             gameState = "noncombat movement"
-            textbox.text = "Select a territory you own to move its forces somewhere else, or press confirm to end your turn."
+            textbox.text = "Select a territory you own to move its forces somewhere else, or press confirm to skip this."
+        }
+        else if(gameState == "noncombat movement")
+        {
+            gameState = "placing units"
+            placeUnits()
         }
     }
     
@@ -93,7 +98,18 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
     
     @IBAction func cancelButton(_ sender: UIButton)
     {
-    
+        if(gameState == "picking target")
+        {
+            gameState = "picking attack force"
+            textbox.text = playerColors[turn] + ", pick a force to attack with. Or press confirm to end combat"
+            cancelButton.isEnabled = false
+        }
+        else if(gameState == "noncombat target")
+        {
+            gameState = "noncombat movement"
+            textbox.text = "Select a territory you own to move its forces somewhere else, or press confirm to skip this."
+            cancelButton.isEnabled = false
+        }
     }
     
     //MARK: UICollectionView DataSource and Delegate functions
@@ -196,6 +212,23 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
                 combineForces(index: indexPath.row)
             }
         }
+        else if(gameState == "placing units")
+        {
+            if(territoryIsOwned)
+            {
+                if(spearmenToPlace > 0)
+                {
+                    territory.getDefenders().adjustUnits(adjustingBowmen: false, num: 1)
+                    spearmenToPlace -= 1
+                }
+                else if(bowmenToPlace > 0)
+                {
+                    territory.getDefenders().adjustUnits(adjustingBowmen: true, num: 1)
+                    bowmenToPlace -= 1
+                }
+                fireUpdate()
+            }
+        }
     }
     
     //unit selector delegate
@@ -212,6 +245,7 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
             
             gameState = "picking target"
             textbox.text = "Pick a target next to this force."
+            cancelButton.isEnabled = true
         }
         else if(gameState == "noncombat movement" && unitsPassing!.bowmen != -100)
         {
@@ -223,6 +257,7 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
             movementForce = Force(units: (bowmen: unitsPassing!.bowmen, spearmen: unitsPassing!.spearmen))
             gameState = "noncombat target"
             textbox.text = "Pick where these troops are going."
+            cancelButton.isEnabled = true
         }
     }
     
@@ -509,7 +544,7 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
             gameState = "placing units"
             placeUnits()
         }
-        else if(gameState == "noncombat target")
+        else if(gameState == "placing units" && spearmenToPlace == 0 && bowmenToPlace == 0)
         {
             if(turn == numPlayers - 1)
             {
@@ -521,6 +556,8 @@ class GameScreenViewController: UIViewController, UICollectionViewDataSource, UI
             {
                 turn += 1
             }
+            gameState = "picking attack force"
+            textbox.text = playerColors[turn] + ", pick a force to attack with. Or press confirm to end combat"
         }
         setTroopNums()
         setOwners()
